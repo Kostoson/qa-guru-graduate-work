@@ -1,0 +1,1 @@
+{"uuid":"b27bd0a6-23f8-4b13-af23-bc9e4a40cde7","name":"InvalidEmailTest()","children":["57b0cd63-efd6-4b54-bb59-e27672e8d167"],"befores":[],"afters":[{"name":"closeDriver","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1687977400823,"stop":1687977400823}],"start":1687977400820,"stop":1687977400826}
