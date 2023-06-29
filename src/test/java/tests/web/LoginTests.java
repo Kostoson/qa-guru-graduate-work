@@ -11,35 +11,28 @@ public class LoginTests extends BaseClassLoginTest{
 
 
     LoginPage loginPage = new LoginPage();
-    WelcomePage welcomePage = new WelcomePage();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
+    ServiceMethods serviceMethods = new ServiceMethods();
+
+
 
     @Test
     void PositiveLoginTest() {
-        loginPage.fillingInTheEmailField("kostos1995@mail.ru")
-                .fillingInThePasswordField("Test123")
-                .logInButtonClick();
-        welcomePage.checkingHeaderTextForFirstSlide()
-                   .clickingOnSkip()
-                   .checkingHeaderTextForSecondSlide()
-                   .clickingOnSkip();
+        serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123")
+                      .skippingSlidesOnWelcomePage();
        personalAccountPage.checkingUserNameInThePersonalAccount("kostos1995@mail.ru");
     }
     @Disabled
     @Test
     void InvalidEmailTest() {
-        loginPage.fillingInTheEmailField("Negative")
-                .fillingInThePasswordField("Test123")
-                .logInButtonClick()
-                .checkingEmailFieldInfo();
+        serviceMethods.authInThePersonalAccount("Negative", "Test123");
+        loginPage.checkingEmailFieldInfo();
     }
     @Disabled
     @Test
     void InvalidPasswordTest() {
-        loginPage.fillingInTheEmailField("kostos1995@mail.ru")
-                .fillingInThePasswordField("NegativeTest123")
-                .logInButtonClick()
-                .checkingPasswordFieldInfo();
+        serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "NegativeTest123");
+        loginPage.checkingPasswordFieldInfo();
     }
 
 }
