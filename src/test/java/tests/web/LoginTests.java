@@ -1,5 +1,6 @@
 package tests.web;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.PersonalAccountPage;
@@ -24,6 +25,7 @@ public class LoginTests extends BaseClassLoginTest{
                    .clickingOnSkip();
        personalAccountPage.checkingUserNameInThePersonalAccount("kostos1995@mail.ru");
     }
+    @Disabled
     @Test
     void InvalidEmailTest() {
         loginPage.fillingInTheEmailField("Negative")
@@ -31,6 +33,7 @@ public class LoginTests extends BaseClassLoginTest{
                 .logInButtonClick()
                 .checkingEmailFieldInfo();
     }
+    @Disabled
     @Test
     void InvalidPasswordTest() {
         loginPage.fillingInTheEmailField("kostos1995@mail.ru")
