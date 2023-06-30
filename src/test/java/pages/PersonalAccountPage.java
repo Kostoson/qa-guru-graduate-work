@@ -8,7 +8,9 @@ public class PersonalAccountPage {
     private SelenideElement dropDownUserMenu = $("div.userMenu__email"),
      switchingToSending = $("a[data-test='link_navigationCampaigns']"),
     templateTab = $("a[data-test='link_lettersTemplate']"),
-            templateTabHeader = $("h1.sideheader");
+            templateTabHeader = $("h1.sideheader"),
+            userMenuButton = $("svg.userMenu__buttonArrow"),
+            userSettingsButton = $("a[data-test='link_settings']");
 
     public PersonalAccountPage checkingUserNameInThePersonalAccount(String userName) {
         dropDownUserMenu.shouldHave(text(userName));
@@ -25,4 +27,10 @@ public class PersonalAccountPage {
         templateTabHeader.shouldHave(text("Мои шаблоны"));
         return this;
     }
+    public PersonalAccountPage openingUserSettings() {
+        userMenuButton.click();
+        userSettingsButton.click();
+        return this;
+    }
+
 }

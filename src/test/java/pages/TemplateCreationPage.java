@@ -9,10 +9,11 @@ import static com.codeborne.selenide.Selenide.$;
 public class TemplateCreationPage {
 
   private SelenideElement header = $("h3.sideheader-simple"),
-   templateNameField = $("input#create_email_params_title"),
-   templateSubjectField = $("input#create_email_params_subject"),
-   yourDesignButton = $("span.mtemplate"),
-          templateNameInTheList = $("a.h4");
+    templateNameField = $("input#create_email_params_title"),
+    templateSubjectField = $("input#create_email_params_subject"),
+    yourDesignButton = $("span.mtemplate"),
+    templateNameInTheList = $("a.h4"),
+    errorAlertForFields = $("div.alert-danger");
 
 
 
@@ -38,7 +39,8 @@ public class TemplateCreationPage {
     templateNameInTheList.shouldHave(text(templateName));
     return this;
   }
-
-
-
+  public TemplateCreationPage checkingErrorAlertForNameField() {
+    errorAlertForFields.shouldHave(text("Это поле не должно быть пустым."));
+    return this;
+  }
 }

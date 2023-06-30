@@ -32,6 +32,18 @@ public class ServiceMethods {
                 .yourDesignButtonClick();
         return this;
     }
+    public ServiceMethods templateCreationWithoutTemplateName(String templateSubject) {
+        templateCreationPage.checkingHeader()
+                .fillingInTheTemplateSubjectField(templateSubject)
+                .yourDesignButtonClick();
+        return this;
+    }
+    public ServiceMethods templateCreationWithoutTemplateSubject(String templateName) {
+        templateCreationPage.checkingHeader()
+                .fillingInTheTemplateNameField(templateName)
+                .yourDesignButtonClick();
+        return this;
+    }
     public ServiceMethods templateDelete() {
         templatesTab.clickingDeleteTemplatesButton();
         return this;
