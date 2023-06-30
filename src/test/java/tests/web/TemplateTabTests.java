@@ -16,14 +16,14 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 @Feature("Unisender")
 @Story("Вкладка 'Мои шаблоны'")
 @Tags({@Tag("Template"), @Tag("Web"), @Tag("Unisender")})
-public class TemplateTabTests extends BaseClass {
+public class TemplateTabTests extends BaseTest {
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
     TemplatesTab templatesTab = new TemplatesTab();
     TemplateCreationPage templateCreationPage = new TemplateCreationPage();
     YouDesignEditorPage youDesignEditorPage = new YouDesignEditorPage();
 
-   static final String MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES = "По заданным параметрам шаблонов не найдено";
+    static final String MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES = "По заданным параметрам шаблонов не найдено";
     static final String COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES = "Записей 0 из 0";
     static final String COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES = "Записей 1 из 1";
 
@@ -32,7 +32,7 @@ public class TemplateTabTests extends BaseClass {
     @Severity(BLOCKER)
     void CheckingTheTransitionToTemplatesTab() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123")
+            serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
         });
         step("Переход на вкладку 'Мои шаблоны'", () -> {
@@ -48,7 +48,7 @@ public class TemplateTabTests extends BaseClass {
     @Severity(BLOCKER)
     void PositiveTemplateCreationTest() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123").
+            serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
         });
         step("Переход на вкладку 'Мои шаблоны'", () -> {
@@ -93,7 +93,7 @@ public class TemplateTabTests extends BaseClass {
     @Severity(NORMAL)
     void TemplateCreationWithoutTemplateNameTest() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123").
+            serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
         });
         step("Переход на вкладку 'Мои шаблоны'", () -> {
@@ -119,7 +119,7 @@ public class TemplateTabTests extends BaseClass {
     @Severity(NORMAL)
     void TemplateCreationWithoutTemplateSubjectTest() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123").
+            serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
         });
         step("Переход на вкладку 'Мои шаблоны'", () -> {

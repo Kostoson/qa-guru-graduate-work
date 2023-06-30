@@ -12,12 +12,11 @@ import static io.qameta.allure.SeverityLevel.BLOCKER;
 @Feature("Unisender")
 @Story("Авторизация")
 @Tags({@Tag("Auth"), @Tag("Web"), @Tag("Unisender")})
-public class LoginTests extends BaseClass {
+public class LoginTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
     ServiceMethods serviceMethods = new ServiceMethods();
-
 
     @Test
     @DisplayName("Позитивный сценарий авторизации в личном кабинете")
@@ -38,7 +37,7 @@ public class LoginTests extends BaseClass {
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Email'")
     void InvalidEmailTest() {
         step("Авторизация с невалидным логином", () -> {
-            serviceMethods.authInThePersonalAccount("Negative", "Test123");
+            serviceMethods.authInThePersonalAccount(invalidEmail, password);
         });
         step("Проверка сообщения об ошибке", () -> {
             loginPage.checkingEmailFieldInfo();
@@ -50,7 +49,7 @@ public class LoginTests extends BaseClass {
     @Severity(BLOCKER)
     void InvalidPasswordTest() {
         step("Авторизация с невалидным паролем", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "NegativeTest123");
+            serviceMethods.authInThePersonalAccount(email, invalidPassword);
         });
         step("Проверка сообщения об ошибке", () -> {
             loginPage.checkingPasswordFieldInfo();

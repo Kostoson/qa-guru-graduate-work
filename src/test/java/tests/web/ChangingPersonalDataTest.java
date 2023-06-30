@@ -7,26 +7,28 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.PersonalAccountPage;
 import pages.PersonalDataPage;
 import com.codeborne.selenide.Selenide;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
+import org.junit.jupiter.params.ParameterizedTest;
 
 @Feature("Unisender")
 @Story("Настройка аккаунта")
 @Tags({@Tag("Settings"), @Tag("Web"), @Tag("Unisender")})
-public class ChangingPersonalDataTest extends BaseClass {
+public class ChangingPersonalDataTest extends BaseTest {
     PersonalDataPage personalDataPage = new PersonalDataPage();
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
 
-    @Test
-    @DisplayName("Позитивный сценарий изменения имени пользователя")
+    @ValueSource(strings = {"Константин тест", "Konstantin test"})
+    @ParameterizedTest(name = "Позитивный сценарий изменения имени пользователя на {0}")
     @Severity(CRITICAL)
-    void changingFirstNameTest() {
+    void changingFirstNameTest(String name) {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123")
+            serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
         });
         step("Переход в настройки аккаунта", () -> {
@@ -36,7 +38,7 @@ public class ChangingPersonalDataTest extends BaseClass {
             personalDataPage.checkingFirstNameField("Константин");
         });
         step("Изменение значения имени пользователя", () -> {
-            personalDataPage.changingFirstNameField("Константин тест");
+            personalDataPage.changingFirstNameField(name);
         });
         step("Сохраниение нового значения имени пользователя", () -> {
             personalDataPage.savingUserSettings();
@@ -45,7 +47,7 @@ public class ChangingPersonalDataTest extends BaseClass {
             Selenide.refresh();
         });
         step("Проверка нового значения имени пользователя", () -> {
-            personalDataPage.checkingFirstNameField("Константин тест");
+            personalDataPage.checkingFirstNameField(name);
         });
         step("Возврат к изначальному состоянию теста", () -> {
             personalDataPage.changingFirstNameField("Константин")
@@ -57,7 +59,7 @@ public class ChangingPersonalDataTest extends BaseClass {
     @Severity(CRITICAL)
     void changingLastNameTest() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123")
+            serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
         });
         step("Переход в настройки аккаунта", () -> {
@@ -88,7 +90,7 @@ public class ChangingPersonalDataTest extends BaseClass {
     @Severity(CRITICAL)
     void changingCompanyNameTest() {
         step("Авторизация в личном кабинете", () -> {
-            serviceMethods.authInThePersonalAccount("kostos1995@mail.ru", "Test123")
+            serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
         });
         step("Переход в настройки аккаунта", () -> {

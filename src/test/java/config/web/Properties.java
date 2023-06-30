@@ -3,7 +3,7 @@ package config.web;
 
 import org.aeonbits.owner.Config;
 @Config.Sources({
-        "classpath:app.properties"
+        "classpath:config/app.properties"
 })
 public interface Properties extends Config {
     @Key("login")
@@ -11,4 +11,9 @@ public interface Properties extends Config {
 
     @Key("password")
     String getPassword();
+    @Key("invalidLogin")
+    String getInvalidLogin();
+
+    @Key("invalidPassword")
+    String getInvalidPassword();
 }

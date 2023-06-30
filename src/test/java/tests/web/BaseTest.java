@@ -9,11 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import pages.MainPage;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class BaseClass {
+public class BaseTest {
 
      Properties config = ConfigFactory.create(Properties.class, System.getProperties());
      String  email = config.getLogin(),
-            password = config.getPassword();
+            password = config.getPassword(),
+            invalidEmail = "Negative",
+            invalidPassword = "NegativeTest123";
 
     /*@BeforeAll
     static void beforeAll() {
