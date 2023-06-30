@@ -11,6 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import pages.PersonalAccountPage;
 import pages.PersonalDataPage;
 import com.codeborne.selenide.Selenide;
+
+import static com.codeborne.selenide.Selenide.sleep;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -59,6 +61,7 @@ public class ChangingPersonalDataTest extends BaseTest {
     @DisplayName("Позитивный сценарий изменения фамилии пользователя")
     @Severity(CRITICAL)
     void changingLastNameTest() {
+        sleep(30000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -91,6 +94,7 @@ public class ChangingPersonalDataTest extends BaseTest {
     @DisplayName("Позитивный сценарий изменения компании пользователя")
     @Severity(CRITICAL)
     void changingCompanyNameTest() {
+        sleep(30000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
