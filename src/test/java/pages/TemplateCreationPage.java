@@ -1,8 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -15,8 +13,6 @@ public class TemplateCreationPage {
     templateNameInTheList = $("a.h4"),
     errorAlertForFields = $("div.alert-danger");
 
-
-
   public TemplateCreationPage checkingHeader() {
     header.shouldHave(text("Email-рассылка"));
     return this;
@@ -26,6 +22,7 @@ public class TemplateCreationPage {
     templateNameField.setValue(templateName);
     return this;
   }
+
   public TemplateCreationPage fillingInTheTemplateSubjectField(String templateSubject) {
     templateSubjectField.setValue(templateSubject);
     return this;
@@ -35,10 +32,12 @@ public class TemplateCreationPage {
     yourDesignButton.click();
     return this;
   }
+
   public TemplateCreationPage checkingTemplateNameInTheList(String templateName) {
     templateNameInTheList.shouldHave(text(templateName));
     return this;
   }
+
   public TemplateCreationPage checkingErrorAlertForNameField() {
     errorAlertForFields.shouldHave(text("Это поле не должно быть пустым."));
     return this;

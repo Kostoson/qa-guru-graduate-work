@@ -8,12 +8,10 @@ import org.aeonbits.owner.Config;
 public interface Properties extends Config {
     @Key("login")
     String getLogin();
-
     @Key("password")
     String getPassword();
     @Key("invalidLogin")
     String getInvalidLogin();
-
     @Key("invalidPassword")
     String getInvalidPassword();
 }

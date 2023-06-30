@@ -54,6 +54,7 @@ public class ChangingPersonalDataTest extends BaseTest {
                     .savingUserSettings();
         });
     }
+
     @Test
     @DisplayName("Позитивный сценарий изменения фамилии пользователя")
     @Severity(CRITICAL)
@@ -85,6 +86,7 @@ public class ChangingPersonalDataTest extends BaseTest {
                     .savingUserSettings();
         });
     }
+
     @Test
     @DisplayName("Позитивный сценарий изменения компании пользователя")
     @Severity(CRITICAL)

@@ -6,11 +6,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class PersonalAccountPage {
     private SelenideElement dropDownUserMenu = $("div.userMenu__email"),
-     switchingToSending = $("a[data-test='link_navigationCampaigns']"),
-    templateTab = $("a[data-test='link_lettersTemplate']"),
-            templateTabHeader = $("h1.sideheader"),
-            userMenuButton = $("svg.userMenu__buttonArrow"),
-            userSettingsButton = $("a[data-test='link_settings']");
+              switchingToSending = $("a[data-test='link_navigationCampaigns']"),
+              templateTab = $("a[data-test='link_lettersTemplate']"),
+              templateTabHeader = $("h1.sideheader"),
+              userMenuButton = $("svg.userMenu__buttonArrow"),
+              userSettingsButton = $("a[data-test='link_settings']");
 
     public PersonalAccountPage checkingUserNameInThePersonalAccount(String userName) {
         dropDownUserMenu.shouldHave(text(userName));
@@ -32,5 +32,4 @@ public class PersonalAccountPage {
         userSettingsButton.click();
         return this;
     }
-
 }

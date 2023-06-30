@@ -14,13 +14,14 @@ public class WelcomePage {
         headerTextForFirstSlide.shouldHave(text("Давайте оставаться на связи"));
         return this;
     }
+
     public WelcomePage checkingHeaderTextForSecondSlide() {
         headerTextForSecondSlide.shouldHave(text("С чего начнём?"));
         return this;
     }
+
     public WelcomePage clickingOnSkip() {
         skipButton.click();
         return this;
     }
-
 }

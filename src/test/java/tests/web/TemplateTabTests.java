@@ -43,6 +43,7 @@ public class TemplateTabTests extends BaseTest {
         });
 
     }
+
     @Test
     @DisplayName("Позитивный сценарий создания шаблона")
     @Severity(BLOCKER)
@@ -88,6 +89,7 @@ public class TemplateTabTests extends BaseTest {
         });
 
     }
+
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания имени шаблона")
     @Severity(NORMAL)
@@ -114,6 +116,7 @@ public class TemplateTabTests extends BaseTest {
                     .checkingMessageAboutSearchResults(MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES);
         });
     }
+
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания темы письма шаблона")
     @Severity(NORMAL)

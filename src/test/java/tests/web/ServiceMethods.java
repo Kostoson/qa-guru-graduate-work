@@ -32,6 +32,7 @@ public class ServiceMethods {
                 .yourDesignButtonClick();
         return this;
     }
+
     public ServiceMethods templateCreationWithoutTemplateName(String templateSubject) {
         templateCreationPage.checkingHeader()
                 .fillingInTheTemplateSubjectField(templateSubject)
@@ -44,10 +45,9 @@ public class ServiceMethods {
                 .yourDesignButtonClick();
         return this;
     }
+
     public ServiceMethods templateDelete() {
         templatesTab.clickingDeleteTemplatesButton();
         return this;
     }
-
-
 }

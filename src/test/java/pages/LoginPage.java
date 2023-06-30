@@ -31,9 +31,9 @@ public class LoginPage {
         emailFieldInfo.shouldHave(Condition.text("Такой email не зарегистрирован в Unisender."));
         return this;
     }
+
     public LoginPage checkingPasswordFieldInfo() {
         passwordFieldInfo.shouldHave(Condition.text("Неверный пароль. Повторите попытку или нажмите на кнопку \"Восстановить\""));
         return this;
     }
-
 }

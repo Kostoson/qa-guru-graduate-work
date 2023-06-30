@@ -31,6 +31,7 @@ public class LoginTests extends BaseTest {
             personalAccountPage.checkingUserNameInThePersonalAccount("kostos1995@mail.ru");
         });
     }
+
     @Disabled
     @Test
     @Severity(BLOCKER)
@@ -43,6 +44,7 @@ public class LoginTests extends BaseTest {
             loginPage.checkingEmailFieldInfo();
         });
     }
+
     @Disabled
     @Test
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Пароль'")

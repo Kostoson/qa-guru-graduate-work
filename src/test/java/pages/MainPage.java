@@ -16,5 +16,4 @@ public class MainPage {
         logInButton.click();
         return this;
     }
-
 }
