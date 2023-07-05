@@ -12,6 +12,7 @@ import static io.qameta.allure.SeverityLevel.BLOCKER;
 @Feature("Unisender")
 @Story("Авторизация")
 @Tags({@Tag("Auth"), @Tag("Web"), @Tag("Unisender")})
+@DisplayName("Тестирование авторизации в личном кабинете")
 public class LoginTests extends BaseTest {
 
     LoginPage loginPage = new LoginPage();

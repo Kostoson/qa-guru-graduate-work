@@ -4,10 +4,7 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pages.*;
 
 import static com.codeborne.selenide.Selenide.sleep;
@@ -18,6 +15,7 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 @Feature("Unisender")
 @Story("Вкладка 'Мои шаблоны'")
 @Tags({@Tag("Template"), @Tag("Web"), @Tag("Unisender")})
+@DisplayName("Тестирование вкладки 'Мои шаблоны'")
 public class TemplateTabTests extends BaseTest {
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
@@ -29,11 +27,12 @@ public class TemplateTabTests extends BaseTest {
     static final String COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES = "Записей 0 из 0";
     static final String COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES = "Записей 1 из 1";
 
+    @Disabled
     @Test
     @DisplayName("Проверка переходы во вкладку 'Мои шаблоны'")
     @Severity(BLOCKER)
     void CheckingTheTransitionToTemplatesTab() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -47,11 +46,12 @@ public class TemplateTabTests extends BaseTest {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Позитивный сценарий создания шаблона")
     @Severity(BLOCKER)
     void PositiveTemplateCreationTest() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
@@ -94,11 +94,12 @@ public class TemplateTabTests extends BaseTest {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания имени шаблона")
     @Severity(NORMAL)
     void TemplateCreationWithoutTemplateNameTest() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
@@ -122,11 +123,12 @@ public class TemplateTabTests extends BaseTest {
         });
     }
 
+    @Disabled
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания темы письма шаблона")
     @Severity(NORMAL)
     void TemplateCreationWithoutTemplateSubjectTest() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();

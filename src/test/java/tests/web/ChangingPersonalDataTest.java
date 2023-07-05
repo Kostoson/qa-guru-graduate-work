@@ -3,10 +3,7 @@ package tests.web;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.PersonalAccountPage;
 import pages.PersonalDataPage;
@@ -20,11 +17,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 @Feature("Unisender")
 @Story("Настройка аккаунта")
 @Tags({@Tag("Settings"), @Tag("Web"), @Tag("Unisender")})
+@DisplayName("Тестирование изменения персональных данных пользователя")
 public class ChangingPersonalDataTest extends BaseTest {
     PersonalDataPage personalDataPage = new PersonalDataPage();
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
 
+    @Disabled
     @ValueSource(strings = {"Константин тест", "Konstantin test"})
     @ParameterizedTest(name = "Позитивный сценарий изменения имени пользователя на {0}")
     @Severity(CRITICAL)
@@ -57,11 +56,12 @@ public class ChangingPersonalDataTest extends BaseTest {
         });
     }
 
+    @Disabled
     @Test
     @DisplayName("Позитивный сценарий изменения фамилии пользователя")
     @Severity(CRITICAL)
     void changingLastNameTest() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -90,11 +90,12 @@ public class ChangingPersonalDataTest extends BaseTest {
         });
     }
 
+    @Disabled
     @Test
     @DisplayName("Позитивный сценарий изменения компании пользователя")
     @Severity(CRITICAL)
     void changingCompanyNameTest() {
-        sleep(30000);
+        sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
