@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "\\media\\logo\\unisender.svg",
+    "project": "qa-guru-graduate-work",
+    "environment": "dev",
+    "comment": "Уведомление о результатах работы автотестов",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "6220577657:AAFdJz6wO5EukBSN8XNoM6JxqFx9kDIEDiM",
+    "chat": "-1001945411718",
+    "replyTo": ""
+  }
+}
