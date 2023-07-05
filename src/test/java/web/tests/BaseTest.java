@@ -24,6 +24,7 @@ public class BaseTest {
 
     @BeforeAll
     static void beforeAll() {
+
         Configuration.remote = System.getProperty("remote");
         Configuration.browserSize = System.getProperty("browserSize");
         String[] browser = System.getProperty("browser").split(":");
@@ -55,10 +56,10 @@ public class BaseTest {
 
     @AfterEach
     void addAttachments() {
-        /*Selenide.closeWebDriver();*/
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        Selenide.closeWebDriver();
     }
 }
