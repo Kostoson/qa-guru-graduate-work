@@ -1,6 +1,7 @@
 package web.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import web.config.Properties;
