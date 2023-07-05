@@ -38,16 +38,18 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
         Configuration.pageLoadStrategy = "eager";
     }
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
+
     @BeforeEach
     void  openLoginPage() {
         MainPage mainPage = new MainPage();
         mainPage.openPage()
                 .logInButtonClick();
         switchTo().window(1);
+    }
+
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
