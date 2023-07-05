@@ -51,13 +51,31 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
 }
 
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-
-
-test {
-    useJUnitPlatform()
+task regress_test(type: Test) {
+    useJUnitPlatform {
+        includeTags( "Regress")
+    }
 }
+
+task web_test(type: Test) {
+    useJUnitPlatform {
+        includeTags( "WEB")
+    }
+}
+
+task api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags( "API")
+    }
+}
+    test {
+        useJUnitPlatform()
+    }
