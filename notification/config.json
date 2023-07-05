@@ -6,7 +6,7 @@
     "comment": "Уведомление о результатах работы автотестов",
     "reportLink": "",
     "language": "ru",
-    "allureFolder": "",
+    "allureFolder": "allure-report/",
     "enableChart": true
   },
   "telegram": {
