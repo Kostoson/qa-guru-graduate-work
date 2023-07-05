@@ -47,10 +47,10 @@ public class BaseTest {
         switchTo().window(1);
     }
 
-    @BeforeEach
+    /*@BeforeEach
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
+    }*/
 
     @AfterEach
     void closeDriver() {
