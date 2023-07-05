@@ -15,7 +15,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 @Feature("Unisender")
 @Story("Настройка аккаунта")
-@Tags({@Tag("Settings"), @Tag("Web"), @Tag("Unisender")})
+@Tags({@Tag("Settings"), @Tag("Web"), @Tag("Regress")})
 @DisplayName("Тестирование изменения персональных данных пользователя")
 public class ChangingPersonalDataTest extends BaseTest {
     PersonalDataPage personalDataPage = new PersonalDataPage();

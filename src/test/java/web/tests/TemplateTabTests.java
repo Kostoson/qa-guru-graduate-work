@@ -16,7 +16,7 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Feature("Unisender")
 @Story("Вкладка 'Мои шаблоны'")
-@Tags({@Tag("Template"), @Tag("Web"), @Tag("Unisender")})
+@Tags({@Tag("Template"), @Tag("Web"), @Tag("Regress")})
 @DisplayName("Тестирование вкладки 'Мои шаблоны'")
 public class TemplateTabTests extends BaseTest {
     ServiceMethods serviceMethods = new ServiceMethods();
@@ -33,7 +33,7 @@ public class TemplateTabTests extends BaseTest {
     @Test
     @DisplayName("Проверка переходы во вкладку 'Мои шаблоны'")
     @Severity(BLOCKER)
-    void CheckingTheTransitionToTemplatesTab() {
+    void checkingTheTransitionToTemplatesTab() {
         sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
@@ -52,7 +52,7 @@ public class TemplateTabTests extends BaseTest {
     @Test
     @DisplayName("Позитивный сценарий создания шаблона")
     @Severity(BLOCKER)
-    void PositiveTemplateCreationTest() {
+    void positiveTemplateCreationTest() {
         sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
@@ -100,7 +100,7 @@ public class TemplateTabTests extends BaseTest {
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания имени шаблона")
     @Severity(NORMAL)
-    void TemplateCreationWithoutTemplateNameTest() {
+    void templateCreationWithoutTemplateNameTest() {
         sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
@@ -129,7 +129,7 @@ public class TemplateTabTests extends BaseTest {
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания темы письма шаблона")
     @Severity(NORMAL)
-    void TemplateCreationWithoutTemplateSubjectTest() {
+    void templateCreationWithoutTemplateSubjectTest() {
         sleep(4000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).

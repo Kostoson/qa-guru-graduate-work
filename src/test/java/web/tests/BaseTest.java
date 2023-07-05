@@ -1,7 +1,6 @@
 package web.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import web.config.Properties;
@@ -25,6 +24,13 @@ public class BaseTest {
 
     @BeforeAll
     static void beforeAll() {
+
+        Configuration.remote = System.getProperty("remote");
+        Configuration.browserSize = System.getProperty("browserSize");
+        String[] browser = System.getProperty("browser").split(":");
+        Configuration.browser = browser[0];
+        Configuration.browserVersion = browser[1];
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true, //чтобы отображалось в селенойде, что внутри просиходит
