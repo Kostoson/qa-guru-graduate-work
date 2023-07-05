@@ -1,9 +1,9 @@
-package tests.web;
+package web.tests;
 
-import pages.LoginPage;
-import pages.TemplateCreationPage;
-import pages.TemplatesTab;
-import pages.WelcomePage;
+import web.pages.LoginPage;
+import web.pages.TemplateCreationPage;
+import web.pages.TemplatesTab;
+import web.pages.WelcomePage;
 
 public class ServiceMethods {
     LoginPage loginPage = new LoginPage();

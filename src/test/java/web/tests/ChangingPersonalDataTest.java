@@ -1,12 +1,12 @@
-package tests.web;
+package web.tests;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.ValueSource;
-import pages.PersonalAccountPage;
-import pages.PersonalDataPage;
+import web.pages.PersonalAccountPage;
+import web.pages.PersonalDataPage;
 import com.codeborne.selenide.Selenide;
 
 import static com.codeborne.selenide.Selenide.sleep;

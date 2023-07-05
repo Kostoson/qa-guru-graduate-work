@@ -1,15 +1,20 @@
-package tests.web;
+package web.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.web.Properties;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import web.config.Properties;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import pages.MainPage;
+import web.helpers.Attach;
+import web.pages.MainPage;
+
+import java.util.Map;
+
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class BaseTest {
@@ -23,6 +28,15 @@ public class BaseTest {
     @BeforeAll
     static void beforeAll() {
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true, //чтобы отображалось в селенойде, что внутри просиходит
+                "enableVideo", true //чтобы писалась запись видео
+        ));
+
+        Configuration.browserCapabilities = capabilities;
+        Configuration.pageLoadStrategy = "eager";
     }
     @BeforeEach
     void addListener() {
@@ -39,6 +53,13 @@ public class BaseTest {
     @AfterEach
     void closeDriver() {
         Selenide.closeWebDriver();
+    }
+
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 
 }

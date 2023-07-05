@@ -1,11 +1,11 @@
-package tests.web;
+package web.tests;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import pages.LoginPage;
-import pages.PersonalAccountPage;
+import web.pages.LoginPage;
+import web.pages.PersonalAccountPage;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.BLOCKER;
 
