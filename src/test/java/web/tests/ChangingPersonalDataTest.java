@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import web.pages.PersonalAccountPage;
 import web.pages.PersonalDataPage;
 import com.codeborne.selenide.Selenide;
-
 import static com.codeborne.selenide.Selenide.sleep;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.CRITICAL;

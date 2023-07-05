@@ -5,12 +5,10 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import pages.*;
 import web.pages.PersonalAccountPage;
 import web.pages.TemplateCreationPage;
 import web.pages.TemplatesTab;
 import web.pages.YouDesignEditorPage;
-
 import static com.codeborne.selenide.Selenide.sleep;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.BLOCKER;
