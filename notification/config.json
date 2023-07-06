@@ -1,12 +1,12 @@
 {
   "base": {
-    "logo": "\\media\\logo\\unisender.svg",
+    "logo": "\\media\\\\logo\\unisender.svg",
     "project": "qa-guru-graduate-work",
     "environment": "dev",
     "comment": "Уведомление о результатах работы автотестов",
     "reportLink": "",
     "language": "ru",
-    "allureFolder": "allure-report/",
+    "allureFolder": "",
     "enableChart": true
   },
   "telegram": {
