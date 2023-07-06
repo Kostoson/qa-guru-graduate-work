@@ -1,9 +1,9 @@
 {
   "base": {
-    "logo": "\\media\\logo\\unisender.svg",
-    "project": "qa-guru-graduate-work",
-    "environment": "dev",
-    "comment": "Уведомление о результатах работы автотестов",
+    "logo": "2.jpeg",
+    "project": "QA.GURU 19 notifications lesson",
+    "environment": "qa.guru",
+    "comment": "comment for test",
     "reportLink": "",
     "language": "ru",
     "allureFolder": "",
