@@ -1,9 +1,9 @@
 {
   "base": {
-    "logo": "2.jpeg",
-    "project": "QA.GURU 19 notifications lesson",
-    "environment": "qa.guru",
-    "comment": "comment for test",
+    "logo": "",
+    "project": "qa-guru-graduate-work",
+    "environment": "dev",
+    "comment": "Уведомление о результатах прохождения автотестов",
     "reportLink": "",
     "language": "ru",
     "allureFolder": "",
