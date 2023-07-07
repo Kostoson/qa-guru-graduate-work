@@ -1,127 +1,17 @@
 2Request URI:	https://petstore.swagger.io/v2/user
 Body:
 {
-    "id": 345,
+    "id": 483,
     "userStatus": 1,
-    "username": "TestKos",
-    "firstName": "QA",
-    "lastName": "Java",
-    "email": "test@qa.guru",
+    "username": "Persian",
+    "firstName": "Quintin",
+    "lastName": "Kozey",
+*    "email": "gayle.gulgowski@yahoo.com",
     "password": "123",
-    "phone": "78887776655"
+    "phone": "32241563542"
 }
 {
     "code": 200,
     "type": "unknown",
-    "message": "345"
+    "message": "483"
 }
-:Request URI:	https://petstore.swagger.io/v2/user/TestKos
-{
-    "id": 345,
-    "username": "TestKos",
-    "firstName": "QA",
-    "lastName": "Java",
-    "email": "test@qa.guru",
-    "password": "123",
-    "phone": "78887776655",
-    "userStatus": 1
-}
-?Request URI:	https://petstore.swagger.io/v2/user/NegativeUser
-{
-    "code": 1,
-    "type": "error",
-     "message": "User not found"
-}
-;Request URI:	https://petstore.swagger.io/v2/store/order/4
-Body:			<none>
-{
-    "code": 404,
-    "type": "unknown",
-!    "message": "Order Not Found"
-}
-1Request URI:	https://petstore.swagger.io/v2/pet
-Body:
-{
-    "id": 123,
-    "category": {
-        "id": 1,
-        "name": "Inoske"
-    },
-    "name": "Test",
-    "status": "Test"
-}
-{
-    "id": 123,
-    "category": {
-        "id": 1,
-        "name": "Inoske"
-    },
-    "name": "Test",
-    "photoUrls": [
-	        
-    ],
-    "tags": [
-	        
-    ],
-    "status": "Test"
-}
-9Request URI:	https://petstore.swagger.io/v2/store/order
-Body:
-{
-    "id": 1,
-    "petId": 2,
-    "quantity": 1,
-    "status": "placed",
-0    "shipDate": "2023-07-07T10:13:16.017+0000",
-    "complete": true
-}
-{
-    "id": 1,
-    "petId": 2,
-    "quantity": 1,
-0    "shipDate": "2023-07-07T10:13:16.017+0000",
-    "status": "placed",
-    "complete": true
-}
-9Request URI:	https://petstore.swagger.io/v2/store/order
-Body:
-{
-    "id": 4,
-    "petId": 3,
-    "quantity": 1,
-    "status": "placed",
-0    "shipDate": "2023-07-07T10:13:16.017+0000",
-    "complete": true
-}
-{
-    "id": 4,
-    "petId": 3,
-    "quantity": 1,
-0    "shipDate": "2023-07-07T10:13:16.017+0000",
-    "status": "placed",
-    "complete": true
-}
-;Request URI:	https://petstore.swagger.io/v2/store/order/4
-Body:			<none>
-{
-    "code": 200,
-    "type": "unknown",
-    "message": "4"
-}
-2Request URI:	https://petstore.swagger.io/v2/user
-Body:
-{
-    "id": 1,
-    "userStatus": 1,
-    "username": "TestK",
-    "firstName": "QA",
-    "lastName": "Java",
-    "email": "test@qa.guru",
-    "password": "123",
-    "phone": "78887776655"
-}
-{
-    "code": 200,
-    "type": "unknown",
-    "message": "1"
-}

@@ -1,32 +1,35 @@
 package api.tests;
 
 import api.models.*;
+import api.utils.RandomUtils;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 public class PetstoreTests {
+    RandomUtils randomUtils = new RandomUtils();
     @Test
     void createUserTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        int id = 1;
-        String username = "TestK";
-        String firstName = "QA";
-        String lastName = "Java";
-        String email = "test@qa.guru";
+        int id = randomUtils.getRandomId();
+        String userName = randomUtils.getRandomUserName();
+        String firstName = randomUtils.getRandomFirstName();
+        String lastName = randomUtils.getRandomLastName();
+        String email = randomUtils.getRandomEmail();
         String password = "123";
-        String phone = "78887776655";
+        String phone = randomUtils.getRandomPhoneNumber(11);
         int userStatus = 1;
         CreateUserResponse response =
         step("Отправка валидного POST запроса на создание пользователя", () ->
-            serviceMethods.createUser(id, username, firstName, lastName, email, password, phone, userStatus));
+            serviceMethods.createUser(id, userName, firstName, lastName, email, password, phone, userStatus));
         step("Проверка тела ответа", () ->
         {
             Assertions.assertAll( () -> {
                     assertThat(response.getCode()).isEqualTo(200);
                     assertThat(response.getType()).isEqualTo("unknown");
-                    assertThat(response.getMessage()).isEqualTo("1");
+                    assertThat(response.getMessage()).isEqualTo(String.valueOf(id));
             });
         });
     }
