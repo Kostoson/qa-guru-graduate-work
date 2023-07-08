@@ -1,16 +1,25 @@
 package api.tests;
 
 import api.models.*;
-import api.utils.RandomUtils;
-import com.github.javafaker.Faker;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import api.helpers.RandomUtils;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Tags;
 import static io.qameta.allure.Allure.step;
+import static io.qameta.allure.SeverityLevel.BLOCKER;
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.assertj.core.api.Assertions.assertThat;
+
+@Feature("Petstore")
+@Tags({ @Tag("API"), @Tag("Regress")})
+@DisplayName("Тестирование API сервиса Petstore")
 public class PetstoreTests {
     RandomUtils randomUtils = new RandomUtils();
     @Test
+    @Severity(BLOCKER)
+    @DisplayName("Позитивный сценарий создания пользователя")
     void createUserTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
         int id = randomUtils.getRandomId();
@@ -18,9 +27,9 @@ public class PetstoreTests {
         String firstName = randomUtils.getRandomFirstName();
         String lastName = randomUtils.getRandomLastName();
         String email = randomUtils.getRandomEmail();
-        String password = "123";
+        String password = randomUtils.getRandomPass();
         String phone = randomUtils.getRandomPhoneNumber(11);
-        int userStatus = 1;
+        int userStatus = randomUtils.getRandomInt(0, 5);
         CreateUserResponse response =
         step("Отправка валидного POST запроса на создание пользователя", () ->
             serviceMethods.createUser(id, userName, firstName, lastName, email, password, phone, userStatus));
@@ -34,16 +43,18 @@ public class PetstoreTests {
         });
     }
     @Test
+    @Severity(CRITICAL)
+    @DisplayName("Позитивный сценарий получения пользователя")
     void getUserByUserNamePositiveTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        int id = 345;
-        String userName = "TestKos";
-        String firstName = "QA";
-        String lastName = "Java";
-        String email = "test@qa.guru";
-        String password = "123";
-        String phone = "78887776655";
-        int userStatus = 1;
+        int id = randomUtils.getRandomId();
+        String userName = randomUtils.getRandomUserName();
+        String firstName = randomUtils.getRandomFirstName();
+        String lastName = randomUtils.getRandomLastName();
+        String email = randomUtils.getRandomEmail();
+        String password = randomUtils.getRandomPass();
+        String phone = randomUtils.getRandomPhoneNumber(11);
+        int userStatus = randomUtils.getRandomInt(0, 5);
         step("Отправка валидного POST запроса на создание пользователя", () ->
             serviceMethods.createUser(id, userName, firstName, lastName, email, password, phone, userStatus));
         GetUserByUserNamePositiveResponse response =
@@ -64,9 +75,13 @@ public class PetstoreTests {
         });
     }
         @Test
+        @Severity(CRITICAL)
+        @DisplayName("Негативный сценарий получения пользователя по несуществующему имени пользователя")
     void getUserByUserNameNegativeTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        String userName = "NegativeUser";
+        String userName = randomUtils.getRandomUserName();
+        String type = "error";
+        String message = "User not found";
         GetUserByUserNameNegativeResponse negativeResponse =
         step("Отправка валидного GET запроса на получение несуществующего пользователя", () ->
              serviceMethods.getNotExistingUserByUserName(userName));
@@ -74,20 +89,22 @@ public class PetstoreTests {
             {
              Assertions.assertAll(() -> {
                 assertThat(negativeResponse.getCode()).isEqualTo(1);
-                assertThat(negativeResponse.getType()).isEqualTo("error");
-                assertThat(negativeResponse.getMessage()).isEqualTo("User not found");
+                assertThat(negativeResponse.getType()).isEqualTo(type);
+                assertThat(negativeResponse.getMessage()).isEqualTo(message);
                 });
             });
     }
     @Test
+    @Severity(BLOCKER)
+    @DisplayName("Позитивный сценарий добавления питомца в базу")
     void petAddToTheStoreTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
 
-        int id = 123;
-        String name = "Test";
-        String status = "Test";
-        int petId = 1;
-        String petName = "Inoske";
+        int id = randomUtils.getRandomId();
+        String name = randomUtils.getRandomFirstName();
+        String status = randomUtils.getRandomStatus();
+        int petId = randomUtils.getRandomId();
+        String petName = randomUtils.getRandomUserName();
 
         AddANewPetResponseBody responseBody =
         step("Отправка валидного POST запроса на добавление питомца в базу", () ->
@@ -104,14 +121,16 @@ public class PetstoreTests {
         //to do узнать как передать массив в тело запроса и как потом его проверить
     }
     @Test
+    @Severity(BLOCKER)
+    @DisplayName("Позитивный сценарий на добавление питомца к заказу")
     void orderPurchasingThePetTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        String shipDate = "2023-07-07T10:13:16.017+0000";
-        String status = "placed";
-        int id = 1;
-        int petId = 2;
-        int quantity = 1;
-        boolean complete = true;
+        String shipDate = randomUtils.getRandomDate();
+        String status = randomUtils.getRandomStatus();
+        int id = randomUtils.getRandomId();
+        int petId = randomUtils.getRandomId();
+        int quantity = randomUtils.getRandomInt(0,4);
+        boolean complete = randomUtils.getRandomBoolean();
         OrderPurchasingThePetResponseBody response =
         step("Отправка валидного POST запроса на создание заказа питомца", () ->
              serviceMethods.createOrderForAPet(shipDate, status, id, petId, quantity, complete));
@@ -120,24 +139,26 @@ public class PetstoreTests {
             Assertions.assertAll(() -> {
                 assertThat(response.getStatus()).isEqualTo(status);
                 assertThat(response.getShipDate()).isEqualTo(shipDate);
-                assertThat(response.getId()).isEqualTo(1);
-                assertThat(response.getPetId()).isEqualTo(2);
-                assertThat(response.getQuantity()).isEqualTo(1);
+                assertThat(response.getId()).isEqualTo(id);
+                assertThat(response.getPetId()).isEqualTo(petId);
+                assertThat(response.getQuantity()).isEqualTo(quantity);
                 assertThat(response.getComplete()).isEqualTo(complete);
             });
         });
     }
     @Test
-    @Tag("API")
+    @Severity(CRITICAL)
+    @DisplayName("Позитивный сценарий на удаление заказа питомца")
     void deletePurchasingThePetByIdTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        String shipDate = "2023-07-07T10:13:16.017+0000";
-        String status = "placed";
-        int id = 4;
-        int petId = 3;
-        int quantity = 1;
-        boolean complete = true;
-        int orderId = 4;
+        String shipDate = randomUtils.getRandomDate();
+        String status = randomUtils.getRandomStatus();
+        int id = randomUtils.getRandomId();
+        int petId = randomUtils.getRandomId();
+        int quantity = randomUtils.getRandomInt(0, 4);
+        boolean complete = randomUtils.getRandomBoolean();
+        int orderId = id;
+        String type = "unknown";
         step("Отправка валидного POST запроса на создание заказа питомца", () ->
              serviceMethods.createOrderForAPet(shipDate, status, id, petId, quantity, complete));
         DeletePurchasingThePetResponseBody response =
@@ -147,17 +168,19 @@ public class PetstoreTests {
         {
             Assertions.assertAll(() -> {
                 assertThat(response.getCode()).isEqualTo(200);
-                assertThat(response.getType()).isEqualTo("unknown");
-                assertThat(response.getMessage()).isEqualTo("4");
+                assertThat(response.getType()).isEqualTo(type);
+                assertThat(response.getMessage()).isEqualTo(String.valueOf(orderId));
             });
         });
     }
     @Test
-    @Tag("API")
+    @Severity(CRITICAL)
+    @DisplayName("Негативный сценарий на удаление заказа питомца по несуществующему orderId")
     void negativeDeletePurchasingThePetByIdTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-        int orderId = 4;
+        int orderId = randomUtils.getRandomId();
         String message = "Order Not Found";
+        String type = "unknown";
         DeletePurchasingThePetResponseBody response =
         step("Отправка валидного DELETE запроса на удаление не существующего заказа питомца", () ->
              serviceMethods.deleteNotExistingPurchasingThePetById(orderId));
@@ -165,7 +188,7 @@ public class PetstoreTests {
         {
             Assertions.assertAll(() -> {
                 assertThat(response.getCode()).isEqualTo(404);
-                assertThat(response.getType()).isEqualTo("unknown");
+                assertThat(response.getType()).isEqualTo(type);
                 assertThat(response.getMessage()).isEqualTo(message);
             });
         });

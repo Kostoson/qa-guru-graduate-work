@@ -20,8 +20,8 @@ public class LoginTests extends BaseTest {
     ServiceMethods serviceMethods = new ServiceMethods();
 
     @Test
-    @DisplayName("Позитивный сценарий авторизации в личном кабинете")
     @Severity(BLOCKER)
+    @DisplayName("Позитивный сценарий авторизации в личном кабинете")
     void positiveLoginTest() {
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password);});

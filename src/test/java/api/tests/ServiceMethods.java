@@ -1,9 +1,10 @@
 package api.tests;
 
 import api.models.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static api.helpers.AllureListener.withCustomTemplates;
+import static api.specs.CreateOrderForAPetSpecs.*;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ServiceMethods {
     public OrderPurchasingThePetResponseBody createOrderForAPet(String shipDate, String status, int id, int petId, int quantity, boolean complete) {
@@ -14,15 +15,13 @@ public class ServiceMethods {
         request.setShipDate(shipDate);
         request.setStatus(status);
         request.setComplete(complete);
-        OrderPurchasingThePetResponseBody response= given()
-                .log().uri()
-                .log().body()
-                .contentType("application/json")
+        OrderPurchasingThePetResponseBody response=
+                 given(createOrderRequestSpec)
                 .body(request)
                 .when()
-                .post("https://petstore.swagger.io/v2/store/order")
+                .post("store/order")
                 .then()
-                .statusCode(200).log().body()
+                .spec(response200)
                 .extract().as(OrderPurchasingThePetResponseBody.class);
         return response;
     }
@@ -37,17 +36,13 @@ public class ServiceMethods {
         request.setPassword(password);
         request.setPhone(phone);
         request.setUserStatus(userStatus);
-        CreateUserResponse response = given()
-                .log().uri()
-                .log().body()
-                .contentType("application/json")
+        CreateUserResponse response = given(createUserRequestSpec)
                 .body(request)
                 .when()
-                .post("https://petstore.swagger.io/v2/user")
+                .post("/user")
                 .then()
-                .statusCode(200)
+                .spec(response200)
                 .body(matchesJsonSchemaInClasspath("jsonschemes/create-user-response-json-schema.json"))
-                .log().body()
                 .extract().as(CreateUserResponse.class);
         return response;
     }
@@ -61,73 +56,55 @@ public class ServiceMethods {
         pet.setId(petId);
         pet.setName(petName);
         requestBody.setCategory(pet);
-        AddANewPetResponseBody responseBody = given()
-                .log().uri()
-                .log().body()
-                .contentType("application/json")
+        AddANewPetResponseBody responseBody = given(petAddToTheStoreRequestSpec)
                 .body(requestBody)
                 .when()
-                .post("https://petstore.swagger.io/v2/pet")
+                .post("/pet")
                 .then()
-                .statusCode(200)
+                .spec(response200)
                 .body(matchesJsonSchemaInClasspath("jsonschemes/pet-add-to-the-store-response-json-schema.json"))
-                .log().body()
                 .extract().as(AddANewPetResponseBody.class);
         return responseBody;
     }
 
     public GetUserByUserNamePositiveResponse getExistingUserByUserName(String userName) {
-         GetUserByUserNamePositiveResponse responseBody = given()
-        .log().uri()
-        .contentType("application/json")
+         GetUserByUserNamePositiveResponse responseBody = given(getUserByUserNameRequestSpec)
         .when()
-        .get("https://petstore.swagger.io/v2/user/" + userName)
+        .get("/user/" + userName)
         .then()
-        .statusCode(200)
+        .spec(response200)
         .body(matchesJsonSchemaInClasspath("jsonschemes/get-user-positive-response-json-schema.json"))
-        .log().body()
         .extract().as(GetUserByUserNamePositiveResponse.class);
         return responseBody;
     }
     public GetUserByUserNameNegativeResponse getNotExistingUserByUserName(String userName) {
-         GetUserByUserNameNegativeResponse responseBody = given()
-        .log().uri()
-        .contentType("application/json")
+         GetUserByUserNameNegativeResponse responseBody = given(getUserByUserNameRequestSpec)
         .when()
-        .get("https://petstore.swagger.io/v2/user/" + userName)
+        .get("/user/" + userName)
         .then()
-        .statusCode(404)
+        .spec(response404)
         .body(matchesJsonSchemaInClasspath("jsonschemes/get-user-negative-response-json-schema.json"))
-        .log().body()
         .extract().as(GetUserByUserNameNegativeResponse.class);
         return responseBody;
     }
 
     public DeletePurchasingThePetResponseBody deleteExistingPurchasingThePetById(int orderId) {
-        DeletePurchasingThePetResponseBody responseBody = given()
-                .log().uri()
-                .log().body()
-                .contentType("application/json")
+        DeletePurchasingThePetResponseBody responseBody = given(deletePurchasingThePetRequestSpec)
                 .when()
-                .delete("https://petstore.swagger.io/v2/store/order/" + orderId)
+                .delete("/store/order/" + orderId)
                 .then()
-                .statusCode(200)
+                .spec(response200)
                 .body(matchesJsonSchemaInClasspath("jsonschemes/delete-purchase-response-json-schema.json"))
-                .log().body()
                 .extract().as(DeletePurchasingThePetResponseBody.class);
         return responseBody;
     }
     public DeletePurchasingThePetResponseBody deleteNotExistingPurchasingThePetById(int orderId) {
-        DeletePurchasingThePetResponseBody responseBody = given()
-                .log().uri()
-                .log().body()
-                .contentType("application/json")
+        DeletePurchasingThePetResponseBody responseBody = given(deletePurchasingThePetRequestSpec)
                 .when()
                 .delete("https://petstore.swagger.io/v2/store/order/" + orderId)
                 .then()
-                .statusCode(404)
+                .spec(response404)
                 .body(matchesJsonSchemaInClasspath("jsonschemes/delete-purchase-response-json-schema.json"))
-                .log().body()
                 .extract().as(DeletePurchasingThePetResponseBody.class);
         return responseBody;
     }
