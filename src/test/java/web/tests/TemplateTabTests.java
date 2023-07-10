@@ -29,7 +29,6 @@ public class TemplateTabTests extends BaseTest {
     static final String COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES = "Записей 0 из 0";
     static final String COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES = "Записей 1 из 1";
 
-    @Disabled
     @Test
     @DisplayName("Проверка переходы во вкладку 'Мои шаблоны'")
     @Severity(BLOCKER)
@@ -48,7 +47,6 @@ public class TemplateTabTests extends BaseTest {
 
     }
 
-    @Disabled
     @Test
     @DisplayName("Позитивный сценарий создания шаблона")
     @Severity(BLOCKER)
@@ -96,7 +94,6 @@ public class TemplateTabTests extends BaseTest {
 
     }
 
-    @Disabled
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания имени шаблона")
     @Severity(NORMAL)
@@ -125,7 +122,6 @@ public class TemplateTabTests extends BaseTest {
         });
     }
 
-    @Disabled
     @Test
     @DisplayName("Негативный сценарий создания шаблона без указания темы письма шаблона")
     @Severity(NORMAL)

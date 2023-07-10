@@ -22,7 +22,6 @@ public class ChangingPersonalDataTest extends BaseTest {
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
 
-    @Disabled
     @ValueSource(strings = {"Константин тест", "Konstantin test"})
     @ParameterizedTest(name = "Позитивный сценарий изменения имени пользователя на {0}")
     @Severity(CRITICAL)
@@ -56,7 +55,6 @@ public class ChangingPersonalDataTest extends BaseTest {
         });
     }
 
-    @Disabled
     @Test
     @DisplayName("Позитивный сценарий изменения фамилии пользователя")
     @Severity(CRITICAL)
@@ -90,7 +88,6 @@ public class ChangingPersonalDataTest extends BaseTest {
         });
     }
 
-    @Disabled
     @Test
     @DisplayName("Позитивный сценарий изменения компании пользователя")
     @Severity(CRITICAL)
