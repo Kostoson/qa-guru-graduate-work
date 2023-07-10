@@ -78,7 +78,7 @@ public class TemplateTabTests extends BaseTest {
             personalAccountPage.switchingToTemplates();
         });
         step("Проверка наличия созданного шаблона", () -> {
-            templateCreationPage.checkingTemplateNameInTheList("Test");
+            templateCreationPage.checkingTemplateNameInTheList("Test1");
         });
         step("Проверка значения счетчика шаблонов, после создания шаблона", () -> {
             templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES);
