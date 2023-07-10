@@ -1,125 +1,42 @@
-2Request URI:	https://petstore.swagger.io/v2/user
+1Request URI:	https://petstore.swagger.io/v2/pet
 Body:
 {
-    "id": 131,
-    "userStatus": 1,
-    "username": "Kabutops",
-    "firstName": "Kaycee",
-    "lastName": "Hand",
-.    "email": "raleigh.halvorson@hotmail.com",
-    "password": "Dreamfyre3",
-    "phone": "35174668023"
+    "id": 466,
+    "category": {
+        "id": 194,
+        "name": "Venusaur"
+    },
+    "name": "Nestor",
+    "status": "urgent",
+    "photoUrls": [
+        "https://test.qa"
+    ],
+    "tags": [
+
+        {
+            "id": 851,
+            "name": "cat"
+
+        }
+    ]
 }
 {
-    "code": 200,
-    "type": "unknown",
-    "message": "131"
+    "id": 466,
+    "category": {
+        "id": 194,
+        "name": "Venusaur"
+    },
+    "name": "Nestor",
+    "photoUrls": [
+        "https://test.qa"
+    ],
+    "tags": [
+
+        {
+            "id": 851,
+            "name": "cat"
+
+        }
+    ],
+    "status": "urgent"
 }
-;Request URI:	https://petstore.swagger.io/v2/user/Kabutops
-{
-    "id": 131,
-    "username": "Kabutops",
-    "firstName": "Kaycee",
-    "lastName": "Hand",
-.    "email": "raleigh.halvorson@hotmail.com",
-    "password": "Dreamfyre3",
-    "phone": "35174668023",
-    "userStatus": 1
-}
-9Request URI:	https://petstore.swagger.io/v2/user/Machop
-{
-    "code": 1,
-    "type": "error",
-     "message": "User not found"
-}
-=Request URI:	https://petstore.swagger.io/v2/store/order/830
-{
-    "code": 404,
-    "type": "unknown",
-!    "message": "Order Not Found"
-}
-1Request URI:	https://petstore.swagger.io/v2/pet
-Body:
-{
-    "id": 54,
-    "category": {
-        "id": 970,
-        "name": "Dodrio"
-    },
-    "name": "Dalila",
-    "status": "accepted"
-}
-{
-    "id": 54,
-    "category": {
-        "id": 970,
-        "name": "Dodrio"
-    },
-    "name": "Dalila",
-    "photoUrls": [
-	        
-    ],
-    "tags": [
-	        
-    ],
-    "status": "accepted"
-}
-9Request URI:	https://petstore.swagger.io/v2/store/order
-Body:
-{
-    "id": 476,
-    "petId": 63,
-    "quantity": 2,
-    "status": "closed",
-0    "shipDate": "2016-11-24T11:20:20.053+0000",
-    "complete": true
-}
-{
-    "id": 476,
-    "petId": 63,
-    "quantity": 2,
-0    "shipDate": "2016-11-24T11:20:20.053+0000",
-    "status": "closed",
-    "complete": true
-}
-9Request URI:	https://petstore.swagger.io/v2/store/order
-Body:
-{
-    "id": 601,
-    "petId": 217,
-    "quantity": 2,
-    "status": "urgent",
-0    "shipDate": "2009-11-18T15:23:41.069+0000",
-    "complete": false
-}
-{
-    "id": 601,
-    "petId": 217,
-    "quantity": 2,
-0    "shipDate": "2009-11-18T15:23:41.069+0000",
-    "status": "urgent",
-    "complete": false
-}
-=Request URI:	https://petstore.swagger.io/v2/store/order/601
-{
-    "code": 200,
-    "type": "unknown",
-    "message": "601"
-}
-2Request URI:	https://petstore.swagger.io/v2/user
-Body:
-{
-    "id": 660,
-    "userStatus": 3,
-    "username": "Blastoise",
-    "firstName": "Maria",
-    "lastName": "Boehm",
-&    "email": "tim.carroll@gmail.com",
-    "password": "Valryon2",
-    "phone": "28706323486"
-}
-{
-    "code": 200,
-    "type": "unknown",
-    "message": "660"
-}

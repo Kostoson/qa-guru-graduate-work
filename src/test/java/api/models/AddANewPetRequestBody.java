@@ -1,5 +1,6 @@
 package api.models;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.*;
@@ -9,6 +10,8 @@ public class AddANewPetRequestBody {
     private int id;
     private Pet category;
     private String name, status;
+    private List<String> photoUrls;
+    private List<Tags> tags;
 }
 
 /*

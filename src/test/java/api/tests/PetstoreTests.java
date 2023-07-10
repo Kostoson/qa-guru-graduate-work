@@ -7,6 +7,11 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Tags;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.BLOCKER;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
@@ -105,16 +110,20 @@ public class PetstoreTests {
         String status = randomUtils.getRandomStatus();
         int petId = randomUtils.getRandomId();
         String petName = randomUtils.getRandomUserName();
-
+        List<String> photoUrls = Arrays.asList("https://test.qa");
+        int tagId = randomUtils.getRandomId();
+        String tagName = randomUtils.getRandomTag();
         AddANewPetResponseBody responseBody =
         step("Отправка валидного POST запроса на добавление питомца в базу", () ->
-             serviceMethods.petAddToTheStore(id, name, status, petId, petName));
+             serviceMethods.petAddToTheStore(id, name, status, petId, petName, photoUrls, tagId, tagName));
         step("Проверка тела ответа", () ->
         {
             Assertions.assertAll(() -> {
                 assertThat(responseBody.getId()).isEqualTo(id);
                 assertThat(responseBody.getName()).isEqualTo(name);
                 assertThat(responseBody.getStatus()).isEqualTo(status);
+                /*assertThat(responseBody.getCategory()).isEqualTo(1);*/
+                assertThat(responseBody.getTags()).isEqualTo(1);
             });
         });
         // to do узнать как проверить объект category

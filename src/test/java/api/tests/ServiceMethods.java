@@ -1,6 +1,10 @@
 package api.tests;
 
 import api.models.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static api.helpers.AllureListener.withCustomTemplates;
 import static api.specs.CreateOrderForAPetSpecs.*;
 import static io.restassured.RestAssured.given;
@@ -47,12 +51,19 @@ public class ServiceMethods {
         return response;
     }
 
-    public AddANewPetResponseBody petAddToTheStore(int id, String name, String status, int petId, String petName) {
+    public AddANewPetResponseBody petAddToTheStore(int id, String name, String status, int petId, String petName, List<String> photoUrls, int tagId, String tagName) {
         AddANewPetRequestBody requestBody = new AddANewPetRequestBody();
+        Tags tag = new Tags();
         Pet pet = new Pet();
         requestBody.setId(id);
         requestBody.setName(name);
         requestBody.setStatus(status);
+        requestBody.setPhotoUrls(photoUrls);
+        tag.setId(tagId);
+        tag.setName(tagName);
+        List<Tags> tags = new ArrayList();
+        tags.add(tag);
+        requestBody.setTags(tags);
         pet.setId(petId);
         pet.setName(petName);
         requestBody.setCategory(pet);

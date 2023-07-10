@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomUtils {
     Faker faker = new Faker();
     String[] status = {"accepted", "closed", "urgent"};
+    String[] tags = {"cat", "dog", "fish", "bird"};
     Boolean[] bool = {true, false};
     public static int getRandomInt(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
@@ -39,6 +40,9 @@ public class RandomUtils {
     }
     public String getRandomStatus() {
         return faker.options().option(status);
+    }
+    public String getRandomTag() {
+        return faker.options().option(tags);
     }
     public Boolean getRandomBoolean() {
         return faker.options().option(bool);
