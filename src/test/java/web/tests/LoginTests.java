@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
     @Severity(BLOCKER)
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Email'")
     void invalidEmailTest() {
-        sleep(10000);
+        sleep(20000);
         step("Авторизация с невалидным логином", () -> {
             serviceMethods.authInThePersonalAccount(invalidEmail, password);
         });
@@ -51,7 +51,7 @@ public class LoginTests extends BaseTest {
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Пароль'")
     @Severity(BLOCKER)
     void invalidPasswordTest() {
-        sleep(10000);
+        sleep(20000);
         step("Авторизация с невалидным паролем", () -> {
             serviceMethods.authInThePersonalAccount(email, invalidPassword);
         });
