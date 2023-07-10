@@ -4,14 +4,11 @@ import api.models.*;
 import api.helpers.RandomUtils;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Tags;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.BLOCKER;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
@@ -35,9 +32,10 @@ public class PetstoreTests {
         String password = randomUtils.getRandomPass();
         String phone = randomUtils.getRandomPhoneNumber(11);
         int userStatus = randomUtils.getRandomInt(0, 5);
+        CreateUserRequest requestBody = CreateUserRequest.builder().id(id).username(userName).firstName(firstName).lastName(lastName).email(email).password(password).phone(phone).userStatus(userStatus).build();
         CreateUserResponse response =
         step("Отправка валидного POST запроса на создание пользователя", () ->
-            serviceMethods.createUser(id, userName, firstName, lastName, email, password, phone, userStatus));
+            serviceMethods.createUser(requestBody));
         step("Проверка тела ответа", () ->
         {
             Assertions.assertAll( () -> {
@@ -47,6 +45,7 @@ public class PetstoreTests {
             });
         });
     }
+
     @Test
     @Severity(CRITICAL)
     @DisplayName("Позитивный сценарий получения пользователя")
@@ -60,8 +59,9 @@ public class PetstoreTests {
         String password = randomUtils.getRandomPass();
         String phone = randomUtils.getRandomPhoneNumber(11);
         int userStatus = randomUtils.getRandomInt(0, 5);
+        CreateUserRequest requestBody = CreateUserRequest.builder().id(id).username(userName).firstName(firstName).lastName(lastName).email(email).password(password).phone(phone).userStatus(userStatus).build();
         step("Отправка валидного POST запроса на создание пользователя", () ->
-            serviceMethods.createUser(id, userName, firstName, lastName, email, password, phone, userStatus));
+            serviceMethods.createUser(requestBody));
         GetUserByUserNamePositiveResponse response =
         step("Отправка валидного GET запроса на получение существующего пользователя", () ->
             serviceMethods.getExistingUserByUserName(userName));
@@ -79,6 +79,7 @@ public class PetstoreTests {
             });
         });
     }
+
         @Test
         @Severity(CRITICAL)
         @DisplayName("Негативный сценарий получения пользователя по несуществующему имени пользователя")
@@ -99,36 +100,43 @@ public class PetstoreTests {
                 });
             });
     }
+
     @Test
     @Severity(BLOCKER)
     @DisplayName("Позитивный сценарий добавления питомца в базу")
     void petAddToTheStoreTest() {
         ServiceMethods serviceMethods = new ServiceMethods();
-
         int id = randomUtils.getRandomId();
         String name = randomUtils.getRandomFirstName();
         String status = randomUtils.getRandomStatus();
-        int petId = randomUtils.getRandomId();
-        String petName = randomUtils.getRandomUserName();
+        Pet category = new Pet();
+        category.setId(randomUtils.getRandomId());
+        category.setName(randomUtils.getRandomUserName());
         List<String> photoUrls = Arrays.asList("https://test.qa");
-        int tagId = randomUtils.getRandomId();
-        String tagName = randomUtils.getRandomTag();
+        api.models.Tags tags = new api.models.Tags();
+        tags.setId(randomUtils.getRandomId());
+        tags.setName(randomUtils.getRandomTag());
+        List<api.models.Tags> tagsList = new ArrayList();
+        tagsList.add(tags);
+        AddANewPetRequestBody requestBody = AddANewPetRequestBody.builder().id(id).name(name)
+                .category(category).photoUrls(photoUrls).tags(tagsList).status(status).build();
         AddANewPetResponseBody responseBody =
-        step("Отправка валидного POST запроса на добавление питомца в базу", () ->
-             serviceMethods.petAddToTheStore(id, name, status, petId, petName, photoUrls, tagId, tagName));
+                step("Отправка валидного POST запроса на добавление питомца в базу", () ->
+                        serviceMethods.petAddToTheStore(requestBody));
         step("Проверка тела ответа", () ->
         {
             Assertions.assertAll(() -> {
                 assertThat(responseBody.getId()).isEqualTo(id);
                 assertThat(responseBody.getName()).isEqualTo(name);
                 assertThat(responseBody.getStatus()).isEqualTo(status);
-                /*assertThat(responseBody.getCategory()).isEqualTo(1);*/
-                assertThat(responseBody.getTags()).isEqualTo(1);
+                assertThat(responseBody.getCategory()).isEqualTo(category);
+                assertThat(responseBody.getTags().get(0).getId()).isEqualTo(tags.getId());
+                assertThat(responseBody.getTags().get(0).getName()).isEqualTo(tags.getName());
+                assertThat(responseBody.getPhotoUrls()).isEqualTo(photoUrls);
             });
         });
-        // to do узнать как проверить объект category
-        //to do узнать как передать массив в тело запроса и как потом его проверить
     }
+
     @Test
     @Severity(BLOCKER)
     @DisplayName("Позитивный сценарий на добавление питомца к заказу")
@@ -140,9 +148,10 @@ public class PetstoreTests {
         int petId = randomUtils.getRandomId();
         int quantity = randomUtils.getRandomInt(0,4);
         boolean complete = randomUtils.getRandomBoolean();
+        OrderPurchasingThePetRequestBody requestBody = OrderPurchasingThePetRequestBody.builder().shipDate(shipDate).status(status).id(id).petId(petId).quantity(quantity).complete(complete).build();
         OrderPurchasingThePetResponseBody response =
         step("Отправка валидного POST запроса на создание заказа питомца", () ->
-             serviceMethods.createOrderForAPet(shipDate, status, id, petId, quantity, complete));
+             serviceMethods.createOrderForAPet(requestBody));
         step("Проверка тела ответа", () ->
         {
             Assertions.assertAll(() -> {
@@ -155,6 +164,7 @@ public class PetstoreTests {
             });
         });
     }
+
     @Test
     @Severity(CRITICAL)
     @DisplayName("Позитивный сценарий на удаление заказа питомца")
@@ -168,8 +178,9 @@ public class PetstoreTests {
         boolean complete = randomUtils.getRandomBoolean();
         int orderId = id;
         String type = "unknown";
+        OrderPurchasingThePetRequestBody requestBody = OrderPurchasingThePetRequestBody.builder().shipDate(shipDate).status(status).id(id).petId(petId).quantity(quantity).complete(complete).build();
         step("Отправка валидного POST запроса на создание заказа питомца", () ->
-             serviceMethods.createOrderForAPet(shipDate, status, id, petId, quantity, complete));
+             serviceMethods.createOrderForAPet(requestBody));
         DeletePurchasingThePetResponseBody response =
         step("Отправка валидного DELETE запроса на удаление существующего заказа питомца", () ->
               serviceMethods.deleteExistingPurchasingThePetById(orderId));
@@ -182,6 +193,7 @@ public class PetstoreTests {
             });
         });
     }
+
     @Test
     @Severity(CRITICAL)
     @DisplayName("Негативный сценарий на удаление заказа питомца по несуществующему orderId")

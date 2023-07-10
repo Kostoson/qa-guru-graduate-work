@@ -16,6 +16,7 @@ public class CreateOrderForAPetSpecs {
             .contentType(JSON)
             .baseUri("https://petstore.swagger.io")
             .basePath("/v2");
+
     public static RequestSpecification createUserRequestSpec = with()
             .log().uri()
             .log().body()
@@ -23,6 +24,7 @@ public class CreateOrderForAPetSpecs {
             .contentType(JSON)
             .baseUri("https://petstore.swagger.io")
             .basePath("/v2");
+
     public static RequestSpecification petAddToTheStoreRequestSpec = with()
             .log().uri()
             .log().body()
@@ -37,6 +39,7 @@ public class CreateOrderForAPetSpecs {
             .contentType(JSON)
             .baseUri("https://petstore.swagger.io")
             .basePath("/v2");
+
     public static RequestSpecification deletePurchasingThePetRequestSpec = with()
             .log().uri()
             .filter(withCustomTemplates())
@@ -49,6 +52,7 @@ public class CreateOrderForAPetSpecs {
             .log(BODY)
             .expectStatusCode(200)
             .build();
+
     public static ResponseSpecification response404 = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)

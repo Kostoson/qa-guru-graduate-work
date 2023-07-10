@@ -6,6 +6,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import web.pages.LoginPage;
 import web.pages.PersonalAccountPage;
+import static com.codeborne.selenide.Selenide.sleep;
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.BLOCKER;
 
@@ -33,11 +34,11 @@ public class LoginTests extends BaseTest {
         });
     }
 
-    @Disabled
     @Test
     @Severity(BLOCKER)
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Email'")
     void invalidEmailTest() {
+        sleep(10000);
         step("Авторизация с невалидным логином", () -> {
             serviceMethods.authInThePersonalAccount(invalidEmail, password);
         });
@@ -46,11 +47,11 @@ public class LoginTests extends BaseTest {
         });
     }
 
-    @Disabled
     @Test
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Пароль'")
     @Severity(BLOCKER)
     void invalidPasswordTest() {
+        sleep(10000);
         step("Авторизация с невалидным паролем", () -> {
             serviceMethods.authInThePersonalAccount(email, invalidPassword);
         });

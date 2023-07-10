@@ -27,6 +27,7 @@ public class ChangingPersonalDataTest extends BaseTest {
     @ParameterizedTest(name = "Позитивный сценарий изменения имени пользователя на {0}")
     @Severity(CRITICAL)
     void changingFirstNameTest(String name) {
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -60,7 +61,7 @@ public class ChangingPersonalDataTest extends BaseTest {
     @DisplayName("Позитивный сценарий изменения фамилии пользователя")
     @Severity(CRITICAL)
     void changingLastNameTest() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -94,7 +95,7 @@ public class ChangingPersonalDataTest extends BaseTest {
     @DisplayName("Позитивный сценарий изменения компании пользователя")
     @Severity(CRITICAL)
     void changingCompanyNameTest() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();

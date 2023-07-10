@@ -34,7 +34,7 @@ public class TemplateTabTests extends BaseTest {
     @DisplayName("Проверка переходы во вкладку 'Мои шаблоны'")
     @Severity(BLOCKER)
     void checkingTheTransitionToTemplatesTab() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -53,7 +53,7 @@ public class TemplateTabTests extends BaseTest {
     @DisplayName("Позитивный сценарий создания шаблона")
     @Severity(BLOCKER)
     void positiveTemplateCreationTest() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
@@ -101,7 +101,7 @@ public class TemplateTabTests extends BaseTest {
     @DisplayName("Негативный сценарий создания шаблона без указания имени шаблона")
     @Severity(NORMAL)
     void templateCreationWithoutTemplateNameTest() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
@@ -130,7 +130,7 @@ public class TemplateTabTests extends BaseTest {
     @DisplayName("Негативный сценарий создания шаблона без указания темы письма шаблона")
     @Severity(NORMAL)
     void templateCreationWithoutTemplateSubjectTest() {
-        sleep(4000);
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();

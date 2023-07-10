@@ -2,6 +2,7 @@ package api.helpers;
 
 import com.github.javafaker.Faker;
 import java.util.concurrent.ThreadLocalRandom;
+
 public class RandomUtils {
     Faker faker = new Faker();
     String[] status = {"accepted", "closed", "urgent"};
@@ -34,24 +35,27 @@ public class RandomUtils {
         int id = getRandomInt(1, 999);
         return id;
     }
+
     public String getRandomPass() {
         String pass = faker.gameOfThrones().dragon() + getRandomInt(0, 9);
         return pass;
     }
+
     public String getRandomStatus() {
         return faker.options().option(status);
     }
+
     public String getRandomTag() {
         return faker.options().option(tags);
     }
+
     public Boolean getRandomBoolean() {
         return faker.options().option(bool);
     }
+
     public String getRandomDate() {
       return getRandomInt(1999, 2023)  + "-" + getRandomInt(11, 12) + "-" + getRandomInt(11, 26) +
                 "T"+ getRandomInt(11, 23) + ":" + getRandomInt(11, 59) +
                 ":"+ getRandomInt(11, 59) + ".0" + getRandomInt(11, 99) + "+" + "0000";
-
     }
-
 }

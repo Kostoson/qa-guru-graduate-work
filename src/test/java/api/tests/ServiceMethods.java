@@ -1,27 +1,15 @@
 package api.tests;
 
 import api.models.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static api.helpers.AllureListener.withCustomTemplates;
 import static api.specs.CreateOrderForAPetSpecs.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ServiceMethods {
-    public OrderPurchasingThePetResponseBody createOrderForAPet(String shipDate, String status, int id, int petId, int quantity, boolean complete) {
-        OrderPurchasingThePetRequestBody request = new OrderPurchasingThePetRequestBody();
-        request.setId(id);
-        request.setPetId(petId);
-        request.setQuantity(quantity);
-        request.setShipDate(shipDate);
-        request.setStatus(status);
-        request.setComplete(complete);
+    public OrderPurchasingThePetResponseBody createOrderForAPet(OrderPurchasingThePetRequestBody requestBody) {
         OrderPurchasingThePetResponseBody response=
                  given(createOrderRequestSpec)
-                .body(request)
+                .body(requestBody)
                 .when()
                 .post("store/order")
                 .then()
@@ -30,43 +18,21 @@ public class ServiceMethods {
         return response;
     }
 
-    public CreateUserResponse createUser(int id, String username, String firstName, String lastName, String email, String password, String phone, int userStatus) {
-        CreateUserRequest request = new CreateUserRequest();
-        request.setId(id);
-        request.setUsername(username);
-        request.setFirstName(firstName);
-        request.setLastName(lastName);
-        request.setEmail(email);
-        request.setPassword(password);
-        request.setPhone(phone);
-        request.setUserStatus(userStatus);
-        CreateUserResponse response = given(createUserRequestSpec)
-                .body(request)
-                .when()
-                .post("/user")
-                .then()
-                .spec(response200)
-                .body(matchesJsonSchemaInClasspath("jsonschemes/create-user-response-json-schema.json"))
-                .extract().as(CreateUserResponse.class);
-        return response;
-    }
+public CreateUserResponse createUser(CreateUserRequest requestBody) {
 
-    public AddANewPetResponseBody petAddToTheStore(int id, String name, String status, int petId, String petName, List<String> photoUrls, int tagId, String tagName) {
-        AddANewPetRequestBody requestBody = new AddANewPetRequestBody();
-        Tags tag = new Tags();
-        Pet pet = new Pet();
-        requestBody.setId(id);
-        requestBody.setName(name);
-        requestBody.setStatus(status);
-        requestBody.setPhotoUrls(photoUrls);
-        tag.setId(tagId);
-        tag.setName(tagName);
-        List<Tags> tags = new ArrayList();
-        tags.add(tag);
-        requestBody.setTags(tags);
-        pet.setId(petId);
-        pet.setName(petName);
-        requestBody.setCategory(pet);
+    CreateUserResponse response = given(createUserRequestSpec)
+            .body(requestBody)
+            .when()
+            .post("/user")
+            .then()
+            .spec(response200)
+            .body(matchesJsonSchemaInClasspath("jsonschemes/create-user-response-json-schema.json"))
+            .extract().as(CreateUserResponse.class);
+    return response;
+}
+
+    public AddANewPetResponseBody petAddToTheStore (AddANewPetRequestBody requestBody) {
+
         AddANewPetResponseBody responseBody = given(petAddToTheStoreRequestSpec)
                 .body(requestBody)
                 .when()
@@ -88,6 +54,7 @@ public class ServiceMethods {
         .extract().as(GetUserByUserNamePositiveResponse.class);
         return responseBody;
     }
+
     public GetUserByUserNameNegativeResponse getNotExistingUserByUserName(String userName) {
          GetUserByUserNameNegativeResponse responseBody = given(getUserByUserNameRequestSpec)
         .when()
@@ -109,6 +76,7 @@ public class ServiceMethods {
                 .extract().as(DeletePurchasingThePetResponseBody.class);
         return responseBody;
     }
+
     public DeletePurchasingThePetResponseBody deleteNotExistingPurchasingThePetById(int orderId) {
         DeletePurchasingThePetResponseBody responseBody = given(deletePurchasingThePetRequestSpec)
                 .when()
