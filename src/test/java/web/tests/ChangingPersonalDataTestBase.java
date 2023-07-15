@@ -5,6 +5,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.ValueSource;
+import servicemethods.ServiceMethods;
 import web.pages.PersonalAccountPage;
 import web.pages.PersonalDataPage;
 import com.codeborne.selenide.Selenide;
@@ -15,9 +16,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 @Feature("Unisender")
 @Story("Настройка аккаунта")
-@Tags({@Tag("Settings"), @Tag("Web"), @Tag("Regress")})
+@Tags({@Tag("Settings"), @Tag("Web"), @Tag("remote")})
 @DisplayName("Тестирование изменения персональных данных пользователя")
-public class ChangingPersonalDataTest extends BaseTest {
+public class ChangingPersonalDataTestBase extends TestBase {
     PersonalDataPage personalDataPage = new PersonalDataPage();
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();

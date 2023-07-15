@@ -1,4 +1,4 @@
-package web.tests;
+package servicemethods;
 
 import web.pages.LoginPage;
 import web.pages.TemplateCreationPage;
