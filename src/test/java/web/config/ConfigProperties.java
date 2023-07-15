@@ -14,4 +14,6 @@ public interface ConfigProperties extends Config {
     String getInvalidLogin();
     @Key("invalidPassword")
     String getInvalidPassword();
+
+
 }

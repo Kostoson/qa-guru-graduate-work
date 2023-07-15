@@ -10,6 +10,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import web.config.RemoteConfig;
 import web.helpers.Attach;
 import web.pages.MainPage;
 import java.util.Map;
@@ -18,6 +19,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 public class TestBase {
 
      ConfigProperties config = ConfigFactory.create(ConfigProperties.class, System.getProperties());
+     static RemoteConfig remoteConfig = ConfigFactory.create(RemoteConfig.class, System.getProperties());
      String  email = config.getLogin(),
              password = config.getPassword(),
              invalidEmail = config.getInvalidLogin(),
@@ -32,14 +34,15 @@ public class TestBase {
         Configuration.browser = browser[0];
         Configuration.browserVersion = browser[1];
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-        Configuration.browserCapabilities = capabilities;
-        Configuration.pageLoadStrategy = "eager";
+        if (remoteConfig.remoteURL() != null && remoteConfig.passwordRemote() != null && remoteConfig.loginRemote() != null) {
+            Configuration.remote = String.format("https://%s:%s@%s/wd/hub", remoteConfig.loginRemote(), remoteConfig.passwordRemote(), remoteConfig.remoteURL());
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
     }
 
     @BeforeEach
