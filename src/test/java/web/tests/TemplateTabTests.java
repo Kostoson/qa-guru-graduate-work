@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
+import servicemethods.ServiceMethods;
 import web.pages.PersonalAccountPage;
 import web.pages.TemplateCreationPage;
 import web.pages.TemplatesTab;
@@ -16,9 +17,9 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Feature("Unisender")
 @Story("Вкладка 'Мои шаблоны'")
-@Tags({@Tag("Template"), @Tag("Web"), @Tag("Regress")})
+@Tags({@Tag("Template"), @Tag("Web"), @Tag("remote")})
 @DisplayName("Тестирование вкладки 'Мои шаблоны'")
-public class TemplateTabTests extends BaseTest {
+public class TemplateTabTests extends TestBase {
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
     TemplatesTab templatesTab = new TemplatesTab();

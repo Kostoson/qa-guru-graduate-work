@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import web.config.Properties;
+import web.config.ConfigProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -15,13 +15,13 @@ import web.pages.MainPage;
 import java.util.Map;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class BaseTest {
+public class TestBase {
 
-     Properties config = ConfigFactory.create(Properties.class, System.getProperties());
+     ConfigProperties config = ConfigFactory.create(ConfigProperties.class, System.getProperties());
      String  email = config.getLogin(),
              password = config.getPassword(),
-             invalidEmail = "Negative",
-             invalidPassword = "NegativeTest123";
+             invalidEmail = config.getInvalidLogin(),
+             invalidPassword = config.getInvalidPassword();
 
     @BeforeAll
     static void beforeAll() {
@@ -34,8 +34,8 @@ public class BaseTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true, //чтобы отображалось в селенойде, что внутри просиходит
-                "enableVideo", true //чтобы писалась запись видео
+                "enableVNC", true,
+                "enableVideo", true
         ));
 
         Configuration.browserCapabilities = capabilities;

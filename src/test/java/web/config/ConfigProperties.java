@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "classpath:config/app.properties"
 })
-public interface Properties extends Config {
+public interface ConfigProperties extends Config {
     @Key("login")
     String getLogin();
     @Key("password")
