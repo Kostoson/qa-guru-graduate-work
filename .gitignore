@@ -2,8 +2,8 @@
 # Compiled class file
 */target
 /target
-/build
-/.gradle
+build/
+.gradle
 *.class
 
 # Log file
@@ -30,4 +30,4 @@
 /allure-results
 
 ### Properties ###
-app.properties
+/app.properties
