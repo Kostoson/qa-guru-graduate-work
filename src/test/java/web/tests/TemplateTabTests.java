@@ -34,7 +34,7 @@ public class TemplateTabTests extends TestBase {
     @DisplayName("Проверка переходы во вкладку 'Мои шаблоны'")
     @Severity(BLOCKER)
     void checkingTheTransitionToTemplatesTab() {
-        sleep(10000);
+       /* sleep(10000);*/
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
@@ -151,3 +151,5 @@ public class TemplateTabTests extends TestBase {
         });
     }
 }
+
+
