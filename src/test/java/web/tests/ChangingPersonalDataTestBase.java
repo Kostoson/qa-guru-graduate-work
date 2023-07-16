@@ -27,7 +27,7 @@ public class ChangingPersonalDataTestBase extends TestBase {
     @ParameterizedTest(name = "Позитивный сценарий изменения имени пользователя на {0}")
     @Severity(CRITICAL)
     void changingFirstNameTest(String name) {
-        /*sleep(10000);*/
+        sleep(10000);
         step("Авторизация в личном кабинете", () -> {
             serviceMethods.authInThePersonalAccount(email, password)
                     .skippingSlidesOnWelcomePage();
