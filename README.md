@@ -1,7 +1,6 @@
-# <span style="color: white"> Дипломая работа по автоматизации тестовых сценариев на UI сайта [Unisender](https://www.unisender.com/) и API сервиса [Petstore](https://petstore.swagger.io/) </span>
+# <span style="color: white"> Дипломая работа по автоматизации тестовых сценариев на UI сайта [Unisender](https://www.unisender.com/)</span>
 
 #### Unisender — маркетинговый сервис для email-рассылок и не только. В нём есть множество инструментов для маркетинга - управление списками подписчиков, A/B тесты, сегментация, создание форм подписки, рассылки не только email, но и SMS, и Viber — приходите и пользуйтесь.
-#### Petstore — образец приложения, которое можно использовать для практики REST-запросов. Этот сайт имитирует онлайн-зоомагазин, и пользователи могут добавлять и получать информацию о своих питомцах.
 <p align="center">
 <img title="Jenkins Build" src="media/readme/unisender.jpg">
 </p>
@@ -11,52 +10,42 @@
 ## :pushpin: Содержание:
 
 - [Использованный стек технологий](#computer-использованный-стек-технологий)
-- [Запуск тестов из терминала](#arrow_forward-запуск-тестов-из-терминала)
-- [Сборка в Jenkins](#сборка-в-jenkins)
-- [Пример Allure-отчета](#пример-allure-отчета)
-- [Уведомления в Telegram с использованием бота](#уведомления-в-telegram-с-использованием-бота)
-- [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-теста-в-selenoid)
+- [Сборка в Jenkins](#-сборка-в-jenkins)
+- [Пример Allure-отчета](#-пример-allure-отчета)
+- [Интеграция с Allure TestOps](#-интеграция-с-allure-testops)
+- [Интеграция с Jira](#-интеграция-с-jira)
+- [Уведомления в Telegram с использованием бота](#-уведомления-в-telegram-с-использованием-бота)
 
 ## :computer: Использованный стек технологий
 
 <p align="center">
-<img width="6%" title="IntelliJ IDEA" src="media/readme/Intelij_IDEA.svg">
-<img width="6%" title="Java" src="media/readme/Java.svg">
-<img width="6%" title="Selenide" src="media/readme/Selenide.svg">
-<img width="6%" title="Selenoid" src="media/readme/Selenoid.svg">
-<img width="6%" title="Allure Report" src="media/readme/Allure_Report.svg">
-<img width="5%" title="Allure TestOps" src="media/readme/AllureTestOps.svg">
-<img width="6%" title="Gradle" src="media/readme/Gradle.svg">
-<img width="6%" title="JUnit5" src="media/readme/JUnit5.svg">
-<img width="6%" title="GitHub" src="media/readme/GitHub.svg">
-<img width="6%" title="Jenkins" src="media/readme/Jenkins.svg">
-<img width="6%" title="Telegram" src="media/readme/Telegram.svg">
-<img width="5%" title="Jira" src="media/readme/Jira.svg">
+<a href="https://www.jetbrains.com/idea/"><img width="6%" title="IntelliJ IDEA" src="media/readme/Intelij_IDEA.svg"></a>
+<a href="https://www.java.com/"><img width="6%" title="Java" src="media/readme/Java.svg"></a>
+<a href="https://ru.selenide.org/"><img width="6%" title="Selenide" src="media/readme/Selenide.svg"></a>
+<a href="https://aerokube.com/selenoid/latest/"><img width="6%" title="Selenoid" src="media/readme/Selenoid.svg"></a>
+<a href="https://docs.qameta.io/allure-report/"><img width="6%" title="Allure Report" src="media/readme/Allure_Report.svg"></a>
+<a href="https://qameta.io/"><img width="5%" title="Allure TestOps" src="media/readme/AllureTestOps.svg"></a>
+<a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/readme/Gradle.svg"></a>
+<a href="https://junit.org/junit5/docs/current/user-guide/"><img width="6%" title="JUnit5" src="media/readme/JUnit5.svg"></a>
+<a href="https://github.com/"><img width="6%" title="GitHub" src="media/readme/GitHub.svg"></a>
+<a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/readme/Jenkins.svg"></a>
+<a href="https://telegram.org/?1"><img width="6%" title="Telegram" src="media/readme/Telegram.svg"></a>
+<a href="https://www.atlassian.com/ru/software/jira"><img width="5%" title="Jira" src="media/readme/Jira.svg"></a>
 </p>
 
-- В данном проекте автотесты написаны на языке <code>Java</code> с использованием фреймворка для тестирования <code>Selenide</code>.
+- В данном проекте автотесты написаны на языке <code>Java</code> с использованием фреймворка для тестирования <code>Selenide</code> и платформы <code>JUnit 5</code>.
 - В качестве сборщика был использован - <code>Gradle</code>.
-- Для тестирования WEB UI использованы фреймворки <code>JUnit 5</code> и [Selenide](https://selenide.org/).
-- Для тестирования API использованы фреймворки <code>REST Assured</code> и <code>Lombock</code>.
 - При прогоне тестов браузер запускается в [Selenoid](https://aerokube.com/selenoid/).
 - Для удаленного запуска реализована параметризированная джоба в <code>Jenkins</code> с формированием Allure-отчета и отправкой результатов в <code>Telegram</code> при помощи бота.
 - Осуществлена интеграция с <code>Allure TestOps</code> и <code>Jira</code>
-
-Содержание Allure-отчета:
-* Шаги теста;
-* Скриншот страницы на последнем шаге;
-* Page Source;
-* Логи браузерной консоли;
-* Видео выполнения автотеста.
 
 ## :arrow_forward: Запуск автотестов
 
 ### Запуск тестов из терминала
 
 ```
-clean remote_test 
 clean
-${TASK}
+remote_test
 -Dremote=${REMOTE_DRIVER_URL}
 -Dbrowser=${BROWSER}
 -DbrowserSize=${BROWSER_SIZE}
@@ -64,12 +53,9 @@ ${TASK}
 
 ### <img src="media/readme/param.svg" title="Параметры сборки" width="4%"/> Параметры сборки
 
-* <code>TASK</code> – задача на прогон тестов. Варианты: WEB, API, Regress.
 * <code>REMOTE_DRIVER_URL</code> – адрес удаленного сервера, на котором будут запускаться тесты.
 * <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По-умолчанию - <code>chrome</code>.
 * <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты.
-
-
 
 ## <img src="media/readme/Jenkins.svg" title="Jenkins" width="4%"/> Сборка в Jenkins
 <p align="center">
@@ -105,13 +91,15 @@ ${TASK}
 
 После завершения сборки, бот созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с результатом.
 
-| ALL PASSED                            | WITH FAILED AND SKIPPED                |
-|---------------------------------------|----------------------------------------|
+| ALL PASSED                            | WITH FAILED                |
+|---------------------------------------|---------------------------------------|
 | ![pos](media/readme/notification.png) | ![neg](media/readme/notification2.png) |
 
-## <img src="media/readme/numer.svg" title="Видео примера запуска тестов в Selenoid" width="4%"/> Видео примера запуска тестов в Selenoid
+## <img src="media/readme/numer.svg" title="Видео прохождения тестов в Selenoid" width="4%"/> Видео примера запуска тестов в Selenoid
 
 К каждому тесту в отчете прилагается видео прогона.
+
+Пример прохождения теста на создание шаблона:
 <p align="center">
   <img title="Selenoid Video" src="media/readme/video.gif">
 </p>
