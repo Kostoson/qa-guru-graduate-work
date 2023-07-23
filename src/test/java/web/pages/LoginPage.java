@@ -27,13 +27,13 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage checkingEmailFieldInfo() {
-        emailFieldInfo.shouldHave(Condition.text("Такой email не зарегистрирован в Unisender."));
+    public LoginPage checkingEmailFieldInfo(String message) {
+        emailFieldInfo.shouldHave(Condition.text(message));
         return this;
     }
 
-    public LoginPage checkingPasswordFieldInfo() {
-        passwordFieldInfo.shouldHave(Condition.text("Неверный пароль. Повторите попытку или нажмите на кнопку \"Восстановить\""));
+    public LoginPage checkingPasswordFieldInfo(String message) {
+        passwordFieldInfo.shouldHave(Condition.text(message));
         return this;
     }
 }

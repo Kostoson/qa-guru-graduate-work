@@ -27,6 +27,7 @@ public class PersonalAccountPage {
         templateTabHeader.shouldHave(text("Мои шаблоны"));
         return this;
     }
+
     public PersonalAccountPage openingUserSettings() {
         userMenuButton.click();
         userSettingsButton.click();
