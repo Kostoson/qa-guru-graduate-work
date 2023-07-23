@@ -20,6 +20,7 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 @Tags({@Tag("Template"), @Tag("Web"), @Tag("remote")})
 @DisplayName("Тестирование вкладки 'Мои шаблоны'")
 public class TemplateTabTests extends TestBase {
+
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
     TemplatesTab templatesTab = new TemplatesTab();
@@ -35,17 +36,16 @@ public class TemplateTabTests extends TestBase {
     @Severity(BLOCKER)
     void checkingTheTransitionToTemplatesTab() {
        /* sleep(10000);*/
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password)
-                    .skippingSlidesOnWelcomePage();
-        });
-        step("Переход на вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.switchingToTemplates();
-        });
-        step("Проверка перехода во вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.checkingTemplateTabHeader();
-        });
-
+                    .skippingSlidesOnWelcomePage()
+        );
+        step("Переход на вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.switchingToTemplates()
+        );
+        step("Проверка перехода во вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.checkingTemplateTabHeader()
+        );
     }
 
     @Test
@@ -53,46 +53,45 @@ public class TemplateTabTests extends TestBase {
     @Severity(BLOCKER)
     void positiveTemplateCreationTest() {
         sleep(10000);
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password).
-                    skippingSlidesOnWelcomePage();
-        });
-        step("Переход на вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.switchingToTemplates();
-        });
-        step("Проверка изначального значения счетчика шаблонов", () -> {
-            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES);
-        });
-        step("Проверка сообщения об отсутсвии шаблонов", () -> {
-            templatesTab.checkingMessageAboutSearchResults(MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES);
-        });
-        step("Нажатие на кнопку 'создать шаблон письма'", () -> {
-            templatesTab.clickingCreateTemplatesButton();
-        });
-        step("Создание шаблона", () -> {
-            serviceMethods.templateCreation("Test", "Текст для теста");
-        });
-        step("Выход из редактора с сохранением созданного шаблона", () -> {
-            youDesignEditorPage.saveAndExitButtonClick();
-        });
-        step("Переход на вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.switchingToTemplates();
-        });
-        step("Проверка наличия созданного шаблона", () -> {
-            templateCreationPage.checkingTemplateNameInTheList("Test");
-        });
-        step("Проверка значения счетчика шаблонов, после создания шаблона", () -> {
-            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES);
-        });
+                    skippingSlidesOnWelcomePage()
+        );
+        step("Переход на вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.switchingToTemplates()
+        );
+        step("Проверка изначального значения счетчика шаблонов", () ->
+            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES)
+        );
+        step("Проверка сообщения об отсутсвии шаблонов", () ->
+            templatesTab.checkingMessageAboutSearchResults(MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES)
+        );
+        step("Нажатие на кнопку 'создать шаблон письма'", () ->
+            templatesTab.clickingCreateTemplatesButton()
+        );
+        step("Создание шаблона", () ->
+            serviceMethods.templateCreation("Test", "Текст для теста")
+        );
+        step("Выход из редактора с сохранением созданного шаблона", () ->
+            youDesignEditorPage.saveAndExitButtonClick()
+        );
+        step("Переход на вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.switchingToTemplates()
+        );
+        step("Проверка наличия созданного шаблона", () ->
+            templateCreationPage.checkingTemplateNameInTheList("Test")
+        );
+        step("Проверка значения счетчика шаблонов, после создания шаблона", () ->
+            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_PRESENCE_OF_TEMPLATES)
+        );
         step("Удаление шаблона", () -> {
             serviceMethods.templateDelete();
             templatesTab.removeTemplateConfirm().
                     checkingAlertInfoAfterDeleteTemplate();
             Selenide.refresh();});
-        step("Проверка, что шаблон удален", () -> {
-            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES);
-        });
-
+        step("Проверка, что шаблон удален", () ->
+            templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES)
+        );
     }
 
     @Test
@@ -100,22 +99,22 @@ public class TemplateTabTests extends TestBase {
     @Severity(NORMAL)
     void templateCreationWithoutTemplateNameTest() {
         sleep(10000);
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password).
-                    skippingSlidesOnWelcomePage();
-        });
-        step("Переход на вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.switchingToTemplates();
-        });
-        step("Нажатие на кнопку 'создать шаблон письма'", () -> {
-            templatesTab.clickingCreateTemplatesButton();
-        });
-        step("Создание шаблона без указания имени шаблона", () -> {
-            serviceMethods.templateCreationWithoutTemplateName("Текст для теста");
-        });
-        step("Проверка сообщения об ошибке", () -> {
-            templateCreationPage.checkingErrorAlertForNameField();
-        });
+                    skippingSlidesOnWelcomePage()
+        );
+        step("Переход на вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.switchingToTemplates()
+        );
+        step("Нажатие на кнопку 'создать шаблон письма'", () ->
+            templatesTab.clickingCreateTemplatesButton()
+        );
+        step("Создание шаблона без указания имени шаблона", () ->
+            serviceMethods.templateCreationWithoutTemplateName("Текст для теста")
+        );
+        step("Проверка сообщения об ошибке", () ->
+            templateCreationPage.checkingErrorAlertForNameField()
+        );
         step("Проверка отсутсвия шаблона", () -> {
             personalAccountPage.switchingToTemplates();
             templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES)
@@ -132,18 +131,18 @@ public class TemplateTabTests extends TestBase {
             serviceMethods.authInThePersonalAccount(email, password).
                     skippingSlidesOnWelcomePage();
         });
-        step("Переход на вкладку 'Мои шаблоны'", () -> {
-            personalAccountPage.switchingToTemplates();
-        });
-        step("Нажатие на кнопку 'создать шаблон письма'", () -> {
-            templatesTab.clickingCreateTemplatesButton();
-        });
-        step("Создание шаблона без указания темы письма", () -> {
-            serviceMethods.templateCreationWithoutTemplateSubject("Test");
-        });
-        step("Проверка сообщения об ошибке", () -> {
-            templateCreationPage.checkingErrorAlertForNameField();
-        });
+        step("Переход на вкладку 'Мои шаблоны'", () ->
+            personalAccountPage.switchingToTemplates()
+        );
+        step("Нажатие на кнопку 'создать шаблон письма'", () ->
+            templatesTab.clickingCreateTemplatesButton()
+        );
+        step("Создание шаблона без указания темы письма", () ->
+            serviceMethods.templateCreationWithoutTemplateSubject("Test")
+        );
+        step("Проверка сообщения об ошибке", () ->
+            templateCreationPage.checkingErrorAlertForNameField()
+        );
         step("Проверка отсутсвия шаблона", () -> {
             personalAccountPage.switchingToTemplates();
             templatesTab.checkingTemplatesCounter(COUNTER_MESSAGE_IN_THE_ABSENCE_OF_TEMPLATES)

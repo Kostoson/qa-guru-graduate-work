@@ -6,6 +6,7 @@ import org.aeonbits.owner.Config;
         "classpath:config/app.properties"
 })
 public interface RemoteConfig extends Config{
+
     @Config.Key("remoteUrl")
     String remoteURL();
 

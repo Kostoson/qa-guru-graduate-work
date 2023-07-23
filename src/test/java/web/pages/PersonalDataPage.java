@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Selenide.$;
 
 public class PersonalDataPage {
+
     private SelenideElement firstNameField = $("input#user_info_firstname"),
             lastNameField = $("input#user_info_lastname"),
             companyField = $("input#user_info_company"),
