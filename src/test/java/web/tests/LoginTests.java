@@ -31,7 +31,7 @@ public class LoginTests extends TestBase {
             serviceMethods.skippingSlidesOnWelcomePage();
         });
         step("Проверка входа в личный кабинет", () -> {
-            personalAccountPage.checkingUserNameInThePersonalAccount("kostos1995@mail.ru");
+            personalAccountPage.checkingUserNameInThePersonalAccount(email);
         });
     }
 
@@ -39,12 +39,13 @@ public class LoginTests extends TestBase {
     @Severity(BLOCKER)
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Email'")
     void invalidEmailTest() {
+        String message = "Такой email не зарегистрирован в Unisender.";
         sleep(20000);
         step("Авторизация с невалидным логином", () -> {
             serviceMethods.authInThePersonalAccount(invalidEmail, password);
         });
         step("Проверка сообщения об ошибке", () -> {
-            loginPage.checkingEmailFieldInfo();
+            loginPage.checkingEmailFieldInfo(message);
         });
     }
 
@@ -52,12 +53,13 @@ public class LoginTests extends TestBase {
     @DisplayName("Негативный сценарий авторизации в личном кабинете с невалидным значением для поля 'Пароль'")
     @Severity(BLOCKER)
     void invalidPasswordTest() {
+        String message = "Неверный пароль. Повторите попытку или нажмите на кнопку \"Восстановить\"";
         sleep(20000);
         step("Авторизация с невалидным паролем", () -> {
             serviceMethods.authInThePersonalAccount(email, invalidPassword);
         });
         step("Проверка сообщения об ошибке", () -> {
-            loginPage.checkingPasswordFieldInfo();
+            loginPage.checkingPasswordFieldInfo(message);
         });
     }
 }
