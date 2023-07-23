@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class WelcomePage {
+
     private SelenideElement headerTextForFirstSlide = $("div.USH3"),
                             headerTextForSecondSlide = $("div.USH3"),
                             skipButton = $("button.USButton_gray");

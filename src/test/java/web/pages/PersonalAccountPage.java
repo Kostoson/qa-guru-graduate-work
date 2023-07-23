@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class PersonalAccountPage {
+
     private SelenideElement dropDownUserMenu = $("div.userMenu__email"),
               switchingToSending = $("a[data-test='link_navigationCampaigns']"),
               templateTab = $("a[data-test='link_lettersTemplate']"),

@@ -6,6 +6,7 @@ import web.pages.TemplatesTab;
 import web.pages.WelcomePage;
 
 public class ServiceMethods {
+
     LoginPage loginPage = new LoginPage();
     WelcomePage welcomePage = new WelcomePage();
     TemplatesTab templatesTab = new TemplatesTab();

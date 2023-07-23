@@ -19,6 +19,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 @Tags({@Tag("Settings"), @Tag("Web"), @Tag("remote")})
 @DisplayName("Тестирование изменения персональных данных пользователя")
 public class ChangingPersonalDataTestBase extends TestBase {
+
     PersonalDataPage personalDataPage = new PersonalDataPage();
     ServiceMethods serviceMethods = new ServiceMethods();
     PersonalAccountPage personalAccountPage = new PersonalAccountPage();
@@ -28,32 +29,32 @@ public class ChangingPersonalDataTestBase extends TestBase {
     @Severity(CRITICAL)
     void changingFirstNameTest(String name) {
         sleep(10000);
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password)
-                    .skippingSlidesOnWelcomePage();
-        });
-        step("Переход в настройки аккаунта", () -> {
-            personalAccountPage.openingUserSettings();
-        });
-        step("Проверка начального значения имени пользователя", () -> {
-            personalDataPage.checkingFirstNameField("Константин");
-        });
-        step("Изменение значения имени пользователя", () -> {
-            personalDataPage.changingFirstNameField(name);
-        });
-        step("Сохраниение нового значения имени пользователя", () -> {
-            personalDataPage.savingUserSettings();
-        });
-        step("Перезагрузка страницы", () -> {
-            Selenide.refresh();
-        });
-        step("Проверка нового значения имени пользователя", () -> {
-            personalDataPage.checkingFirstNameField(name);
-        });
-        step("Возврат к изначальному состоянию теста", () -> {
+                    .skippingSlidesOnWelcomePage()
+        );
+        step("Переход в настройки аккаунта", () ->
+            personalAccountPage.openingUserSettings()
+        );
+        step("Проверка начального значения имени пользователя", () ->
+            personalDataPage.checkingFirstNameField("Константин")
+        );
+        step("Изменение значения имени пользователя", () ->
+            personalDataPage.changingFirstNameField(name)
+        );
+        step("Сохраниение нового значения имени пользователя", () ->
+            personalDataPage.savingUserSettings()
+        );
+        step("Перезагрузка страницы", () ->
+            Selenide.refresh()
+        );
+        step("Проверка нового значения имени пользователя", () ->
+            personalDataPage.checkingFirstNameField(name)
+        );
+        step("Возврат к изначальному состоянию теста", () ->
             personalDataPage.changingFirstNameField("Константин")
-                    .savingUserSettings();
-        });
+                    .savingUserSettings()
+        );
     }
 
     @Test
@@ -61,32 +62,32 @@ public class ChangingPersonalDataTestBase extends TestBase {
     @Severity(CRITICAL)
     void changingLastNameTest() {
         sleep(10000);
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password)
-                    .skippingSlidesOnWelcomePage();
-        });
-        step("Переход в настройки аккаунта", () -> {
-            personalAccountPage.openingUserSettings();
-        });
-        step("Проверка начального значения фамилии пользователя", () -> {
-            personalDataPage.checkingLastNameField("QA");
-        });
-        step("Изменение значения фамилии пользователя", () -> {
-            personalDataPage.changingLastNameField("QA тест");
-        });
-        step("Сохраниение нового значения фамилии пользователя", () -> {
-            personalDataPage.savingUserSettings();
-        });
-        step("Перезагрузка страницы", () -> {
-            Selenide.refresh();
-        });
-        step("Проверка нового значения фамилии пользователя", () -> {
-            personalDataPage.checkingLastNameField("QA тест");
-        });
-        step("Возврат к изначальному состоянию теста", () -> {
+                    .skippingSlidesOnWelcomePage()
+        );
+        step("Переход в настройки аккаунта", () ->
+            personalAccountPage.openingUserSettings()
+        );
+        step("Проверка начального значения фамилии пользователя", () ->
+            personalDataPage.checkingLastNameField("QA")
+        );
+        step("Изменение значения фамилии пользователя", () ->
+            personalDataPage.changingLastNameField("QA тест")
+        );
+        step("Сохраниение нового значения фамилии пользователя", () ->
+            personalDataPage.savingUserSettings()
+        );
+        step("Перезагрузка страницы", () ->
+            Selenide.refresh()
+        );
+        step("Проверка нового значения фамилии пользователя", () ->
+            personalDataPage.checkingLastNameField("QA тест")
+        );
+        step("Возврат к изначальному состоянию теста", () ->
             personalDataPage.changingLastNameField("QA")
-                    .savingUserSettings();
-        });
+                    .savingUserSettings()
+        );
     }
 
     @Test
@@ -94,31 +95,31 @@ public class ChangingPersonalDataTestBase extends TestBase {
     @Severity(CRITICAL)
     void changingCompanyNameTest() {
         sleep(10000);
-        step("Авторизация в личном кабинете", () -> {
+        step("Авторизация в личном кабинете", () ->
             serviceMethods.authInThePersonalAccount(email, password)
-                    .skippingSlidesOnWelcomePage();
-        });
-        step("Переход в настройки аккаунта", () -> {
-            personalAccountPage.openingUserSettings();
-        });
-        step("Проверка начального значения названия компании пользователя", () -> {
-            personalDataPage.checkingCompanyField("Alfa-bank");
-        });
-        step("Изменение значения названия компании пользователя", () -> {
-            personalDataPage.changingCompanyField("Alfa-bank test");
-        });
-        step("Сохраниение нового значения названия компании пользователя", () -> {
-            personalDataPage.savingUserSettings();
-        });
-        step("Перезагрузка страницы", () -> {
-            Selenide.refresh();
-        });
-        step("Проверка нового значения названия компании пользователя", () -> {
-            personalDataPage.checkingCompanyField("Alfa-bank test");
-        });
-        step("Возврат к изначальному состоянию теста", () -> {
+                    .skippingSlidesOnWelcomePage()
+        );
+        step("Переход в настройки аккаунта", () ->
+            personalAccountPage.openingUserSettings()
+        );
+        step("Проверка начального значения названия компании пользователя", () ->
+            personalDataPage.checkingCompanyField("Alfa-bank")
+        );
+        step("Изменение значения названия компании пользователя", () ->
+            personalDataPage.changingCompanyField("Alfa-bank test")
+        );
+        step("Сохраниение нового значения названия компании пользователя", () ->
+            personalDataPage.savingUserSettings()
+        );
+        step("Перезагрузка страницы", () ->
+            Selenide.refresh()
+        );
+        step("Проверка нового значения названия компании пользователя", () ->
+            personalDataPage.checkingCompanyField("Alfa-bank test")
+        );
+        step("Возврат к изначальному состоянию теста", () ->
             personalDataPage.changingCompanyField("Alfa-bank")
-                    .savingUserSettings();
-        });
+                    .savingUserSettings()
+        );
     }
 }

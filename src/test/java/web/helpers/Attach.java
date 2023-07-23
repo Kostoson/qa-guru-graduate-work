@@ -16,6 +16,7 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 public class Attach {
 
     static RemoteConfig config = ConfigFactory.create(RemoteConfig.class, System.getProperties());
+
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] screenshotAs(String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);

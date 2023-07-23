@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
+
     private SelenideElement emailField = $("input[data-test='input-login']"),
                             passwordField = $("input[data-test='input-password']"),
 
